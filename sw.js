@@ -1,4 +1,4 @@
-const CACHE='libra-lab-v1';
+const CACHE='libra-lab-v2';
 const FILES=['./','./index.html','./manifest.webmanifest','./assets/libra-lab-horizontal.jpg'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES))));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k))))));
