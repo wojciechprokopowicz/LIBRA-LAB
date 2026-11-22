@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#030914">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="LIBRA Lab">
+<link rel="manifest" href="manifest.webmanifest">
+<title>LIBRA Lab</title>
+<style>
+:root{color-scheme:dark;--bg:#030914;--bg2:#061323;--panel:#091a2b;--panel2:#0c2033;--line:#1b3449;--text:#f1eee7;--muted:#9aaaba;--gold:#e7c98d;--teal:#4fc5bb;--red:#d77f79;--amber:#c9a56b;--green:#75b8a3;--radius:19px}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}body{background:radial-gradient(ellipse at 50% -10%,#10253a 0,#061222 36%,#030914 75%);font-size:15px}
+button,input,select,textarea{font:inherit}button{cursor:pointer}
+.app{max-width:520px;margin:0 auto;min-height:100dvh;padding:env(safe-area-inset-top) 16px calc(94px + env(safe-area-inset-bottom));position:relative}
+.header{height:105px;display:flex;align-items:center;justify-content:center;position:relative;margin-bottom:12px}
+.brand{width:190px;height:82px;object-fit:contain;mix-blend-mode:screen}
+.header-btn{position:absolute;top:26px;width:42px;height:42px;border:1px solid var(--line);border-radius:50%;background:#0a1a2b;color:var(--text);font-size:20px}
+.header-btn.left{left:0}.header-btn.right{right:0}
+.view{display:none;animation:fade .16s ease}.view.active{display:block}@keyframes fade{from{opacity:.45;transform:translateY(3px)}to{opacity:1;transform:none}}
+h1{font-size:22px;font-weight:500;margin:6px 2px 15px}h2{font-size:16px;font-weight:500;margin:0}h3{font-size:13px;font-weight:500;margin:0}
+p{line-height:1.5}.muted,.hint{color:var(--muted)}.hint{font-size:12px;line-height:1.5}.eyebrow{font-size:10px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+.card{background:linear-gradient(145deg,rgba(12,31,49,.96),rgba(5,17,31,.98));border:1px solid var(--line);border-radius:var(--radius);padding:17px;margin-bottom:13px;box-shadow:0 12px 32px #0002}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px}.row.start{align-items:flex-start}.stack{display:grid;gap:10px}
+.index-head{display:flex;justify-content:space-between;align-items:center;gap:10px}.index-label{font-size:15px;color:#d6dce2}.score{font-size:38px;line-height:.95;font-weight:300;letter-spacing:-2px;color:var(--gold);font-variant-numeric:tabular-nums}
+.bar{height:8px;border-radius:20px;background:#203449;overflow:hidden;margin:15px 0 13px}.bar>i{display:block;height:100%;border-radius:20px;background:linear-gradient(90deg,#16c8c1,#8dd7bc,#f1c675)}
+.advice{display:flex;gap:11px;border-top:1px solid var(--line);padding-top:13px;margin-top:13px}.bulb{font-size:22px;line-height:1;color:#f5f1e9}.advice-title{font-size:12px;font-weight:400;margin:0 0 3px}.advice-text{font-size:11px;line-height:1.5;color:#c5d0da;margin:0}
+.overview{padding:0;overflow:hidden}.overview-toggle{width:100%;padding:16px;background:none;border:0;color:var(--text);display:flex;justify-content:space-between;align-items:center;text-align:left}.overview-toggle strong{font-size:16px;font-weight:500}.overview-content{display:none;padding:0 16px 12px}.overview.open .overview-content{display:block}
+.metric{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-top:1px solid #1b3045;font-size:12px}.metric span{color:var(--muted)}.metric b{font-weight:500;text-align:right}
+.btn{width:100%;padding:14px;border:1px solid var(--line);background:#091a2b;color:var(--text);border-radius:14px;font-size:14px;margin:5px 0;text-align:left}
+.btn.primary{background:var(--gold);color:#132237;border-color:var(--gold);text-align:center;font-weight:600}.btn.ghost{text-align:center;background:transparent}.btn.danger{border-color:#75413f;color:#efb2ac}.btn .plus{font-size:20px;color:var(--gold);margin-right:11px}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.choice{border:1px solid #29445c;background:#0b1d30;color:var(--text);border-radius:12px;padding:11px 8px;font-size:12px}.choice.selected{border-color:var(--gold);background:#1a2b3c;color:var(--gold)}
+.field{margin:14px 0}.field label{display:block;font-size:12px;color:#c2ccd6;margin-bottom:7px}.field input,.field textarea,.field select{width:100%;background:#061426;color:var(--text);border:1px solid #29445c;border-radius:11px;padding:11px;font-size:13px}.field textarea{min-height:68px;resize:vertical}.field input[type=range]{padding:0;accent-color:var(--teal)}
+.scale{display:flex;gap:6px}.scale button{flex:1;padding:10px 0;border:1px solid #29445c;border-radius:9px;background:#0a1c2e;color:var(--text)}.scale button.selected{background:var(--gold);color:#14243a;border-color:var(--gold)}
+.duration-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.duration-grid button{padding:9px 3px}
+.topline{display:flex;align-items:center;justify-content:space-between;margin:0 2px 10px}.back{border:0;background:none;color:var(--gold);padding:5px 0;font-size:12px}
+.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(520px,100%);display:flex;justify-content:space-around;background:rgba(3,12,24,.96);border-top:1px solid #152b40;padding:10px 4px calc(12px + env(safe-area-inset-bottom));z-index:5;backdrop-filter:blur(14px)}
+.nav button{border:0;background:none;color:#8496a8;font-size:10px;display:flex;flex-direction:column;align-items:center;gap:3px;min-width:58px}.nav button b{font-size:19px;font-weight:400}.nav button.active{color:var(--gold)}
+.screen-actions{display:flex;gap:8px}.screen-actions .btn{flex:1;text-align:center}
+.list-row{display:flex;align-items:center;gap:10px;padding:12px 0;border-top:1px solid var(--line);font-size:12px}.list-row input{accent-color:var(--gold)}
+.daygrid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;text-align:center;margin-top:12px}.daygrid .weekday{font-size:10px;color:var(--muted);padding:5px 0}.day{padding:9px 0;border-radius:9px;background:#0a1a2b;border:1px solid transparent;color:var(--text);font-size:11px}.day.selected{background:var(--gold);color:#14243a}.day.has-event:after{content:"•";display:block;color:var(--teal);font-size:13px;line-height:6px}
+.tabs{display:flex;gap:5px;background:#07182a;border:1px solid var(--line);padding:4px;border-radius:14px;margin:10px 0}.tabs button{flex:1;background:transparent;border:0;color:var(--muted);padding:9px 4px;border-radius:10px;font-size:11px}.tabs button.active{background:var(--gold);color:#15243a}
+.bottom-spacer{height:14px}.toast{position:fixed;bottom:84px;left:50%;transform:translateX(-50%);background:#e9e1d1;color:#132237;padding:10px 15px;border-radius:22px;font-size:12px;z-index:20;display:none;max-width:90%;text-align:center}
+.overlay{position:fixed;inset:0;background:#0009;z-index:15;display:none;align-items:flex-end;justify-content:center}.overlay.show{display:flex}.sheet{width:min(520px,100%);background:#0a1b2e;border:1px solid var(--line);border-radius:22px 22px 0 0;padding:20px 18px calc(20px + env(safe-area-inset-bottom));max-height:82dvh;overflow:auto}
+.small{font-size:11px}.status{font-size:11px;color:var(--muted)}.tag{display:inline-block;border:1px solid var(--line);border-radius:30px;padding:5px 8px;color:var(--muted);font-size:10px}
+.chart{height:110px;display:flex;align-items:end;gap:6px;padding:12px 2px}.chart i{flex:1;background:linear-gradient(180deg,var(--teal),#1c5261);border-radius:5px 5px 0 0}
+.performance{min-height:440px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}.orb{width:184px;height:184px;border-radius:50%;border:2px solid #5cc9bd;box-shadow:0 0 35px #37b9b155,inset 0 0 28px #d9bd7255;display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--gold);margin:20px}
+.hidden{display:none!important}.empty{padding:18px;text-align:center;color:var(--muted);font-size:12px}
+
+.menu-overlay{position:fixed;inset:0;z-index:30;display:none}.menu-overlay.show{display:block}.menu-scrim{position:absolute;inset:0;background:rgba(0,0,0,.58);backdrop-filter:blur(5px)}.menu-panel{position:absolute;right:0;top:0;height:100%;width:85%;max-width:430px;background:rgba(5,17,31,.97);border-left:1px solid #244057;padding:calc(22px + env(safe-area-inset-top)) 18px calc(22px + env(safe-area-inset-bottom));overflow:auto;box-shadow:-18px 0 55px #0008;animation:drawerIn .18s ease}.menu-head{display:flex;align-items:center;justify-content:space-between;padding-bottom:15px;border-bottom:1px solid var(--line);margin-bottom:14px}.menu-head img{width:150px;height:65px;object-fit:contain}.menu-head .header-btn{position:static}.menu-search{width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);background:#0b1d30;color:var(--muted);text-align:left;font-size:12px;margin-bottom:16px}.menu-group{padding:9px 0;border-bottom:1px solid #142a3d}.menu-group span{display:block;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin:4px 0 7px}.menu-group button{display:block;width:100%;border:0;background:transparent;color:var(--text);text-align:left;padding:10px 7px;border-radius:9px;font-size:13px}.menu-group button:active,.menu-group button:hover{background:#10263a;color:var(--gold)}@keyframes drawerIn{from{transform:translateX(20px);opacity:.7}to{transform:none;opacity:1}}
+
+@media(min-width:650px){body{padding:20px}.app{border:1px solid #20384f;border-radius:30px;min-height:850px;padding-top:12px;box-shadow:0 20px 80px #0008}.nav{bottom:20px;border-radius:0 0 30px 30px}}
+</style>
+</head>
+<body>
+<main class="app">
+<header class="header">
+<img class="brand" src="assets/libra-lab-horizontal.jpg" alt="LIBRA Lab">
+<button class="header-btn right" id="moreBtn" aria-label="Open menu">•••</button>
+</header>
+
+<section class="view active" id="dashboard">
+  <div class="card">
+    <div class="index-head"><span class="index-label">Stress-Rest Index</span><strong class="score" id="indexValue">68</strong></div>
+    <div class="bar"><i id="indexBar" style="width:68%"></i></div>
+    <div class="advice"><span class="bulb">♧</span><div><h3 class="advice-title">Advice</h3><p class="advice-text" id="adviceText">Keep a steady pace today and give yourself a proper recovery window.</p></div></div>
+    <p class="hint" id="indexUpdated" style="margin:10px 0 0">Experimental estimate · Add check-ins and activities to refine your index.</p>
+  </div>
+  <div class="card overview" id="overviewCard">
+    <button class="overview-toggle" id="overviewToggle"><strong>Today’s Overview</strong><span id="overviewChevron">⌄</span></button>
+    <div class="overview-content" id="overviewContent"></div>
+  </div>
+  <button class="btn" data-go="add"><span class="plus">＋</span>Add Activity</button>
+  <div class="card" style="margin-top:14px">
+    <div class="row"><h3>Today</h3><span class="tag" id="todayLabel"></span></div>
+    <div class="metric"><span>Practice time</span><b id="todayPractice">0 min</b></div>
+    <div class="metric"><span>Rehearsal & concert time</span><b id="todayWork">0 min</b></div>
+    <div class="metric"><span>Check-in status</span><b id="todayCheckin">Not completed</b></div>
+  </div>
+</section>
+
+<section class="view" id="add">
+  <div class="topline"><button class="back" data-go="dashboard">‹ Dashboard</button><span class="eyebrow">MUSIC & WORK</span></div>
+  <h1>Add Activity</h1><p class="hint">Choose the activity you want to record.</p>
+  <button class="btn" data-go="practice"><span class="plus">◎</span>Practice <span style="float:right">›</span></button>
+  <button class="btn" data-event-type="Rehearsal"><span class="plus">♫</span>Rehearsal <span style="float:right">›</span></button>
+  <button class="btn" data-event-type="Concert"><span class="plus">▣</span>Concert <span style="float:right">›</span></button>
+</section>
+
+<section class="view" id="practice">
+  <div class="topline"><button class="back" data-go="add">‹ Add Activity</button><span class="eyebrow">PRACTICE LOG</span></div><h1>Practice Log</h1>
+  <div class="card">
+    <div class="field"><label>Practice Category</label><select id="practiceCategory"><option>Warm-up</option><option>Basics</option><option>Etudes</option><option>Orchestral Excerpts</option><option>Solo Repertoire</option><option>Free Playing</option><option>Ensemble / Social Playing</option></select></div>
+    <div class="field"><label>Duration</label><div class="duration-grid" id="practiceDurations"><button class="choice">30 min</button><button class="choice selected">45 min</button><button class="choice">1 h</button><button class="choice">1.5 h</button><button class="choice">2 h</button><button class="choice">2.5 h</button><button class="choice">3 h</button><button class="choice" data-custom-duration>Custom</button></div><input id="customDuration" class="hidden" type="number" min="5" max="600" placeholder="Minutes" style="margin-top:8px"></div>
+    <div class="field"><label>Intensity</label><div class="grid2" data-choice="practiceIntensity"><button class="choice">Light</button><button class="choice selected">Moderate</button><button class="choice">High</button></div></div>
+    <div class="field"><label>Load Type</label><div class="grid2" data-choice="practiceLoad"><button class="choice">Embouchure</button><button class="choice">Mental Focus</button><button class="choice selected" style="grid-column:span 2">Both</button></div></div>
+    <div class="field"><label>Embouchure Fatigue · 1–5</label><div class="scale" data-scale="embFatigue"><button>1</button><button>2</button><button class="selected">3</button><button>4</button><button>5</button></div></div>
+    <div class="field"><label>Mental Fatigue · 1–5</label><div class="scale" data-scale="mentalFatigue"><button>1</button><button>2</button><button class="selected">3</button><button>4</button><button>5</button></div></div>
+    <div class="field"><label>Notes (optional)</label><textarea id="practiceNotes" placeholder="What did you work on?"></textarea></div>
+    <button class="btn primary" id="savePractice">Save Practice Session</button>
+  </div>
+</section>
+
+<section class="view" id="event">
+  <div class="topline"><button class="back" data-go="add">‹ Add Activity</button><span class="eyebrow">CALENDAR & LOAD</span></div><h1 id="eventTitle">Rehearsal</h1>
+  <div class="card">
+    <div class="field"><label>Event Type</label><select id="eventType"><option>Rehearsal</option><option>Concert</option><option>Orchestra Rehearsal</option><option>Additional Project</option><option>Wrocław Teaching</option><option>Personal Event</option></select></div>
+    <div class="field"><label>Date</label><input type="date" id="eventDate"></div>
+    <div class="grid2"><div class="field"><label>Start</label><input type="time" id="eventStart" value="09:30"></div><div class="field"><label>End</label><input type="time" id="eventEnd" value="12:00"></div></div>
+    <div class="field"><label>Intensity</label><div class="grid2" data-choice="eventIntensity"><button class="choice">Light</button><button class="choice selected">Moderate</button><button class="choice">High</button></div></div>
+    <div class="field"><label>Load Type</label><div class="grid2" data-choice="eventLoad"><button class="choice">Embouchure</button><button class="choice">Mental Focus</button><button class="choice selected">Both</button></div></div>
+    <div class="field"><label>Embouchure Fatigue · 1–5</label><div class="scale" data-scale="eventEmb"><button>1</button><button>2</button><button class="selected">3</button><button>4</button><button>5</button></div></div>
+    <div class="field"><label>Mental Fatigue · 1–5</label><div class="scale" data-scale="eventMental"><button>1</button><button>2</button><button class="selected">3</button><button>4</button><button>5</button></div></div>
+    <div class="field"><label>Location / Notes</label><input id="eventNotes" placeholder="Optional"></div>
+    <button class="btn primary" id="saveEvent">Save Calendar Event</button>
+  </div>
+</section>
+
+<section class="view" id="calendar">
+  <div class="row"><h1>Calendar & Load</h1><button class="choice" data-go="dienstplan">Import PDF</button></div>
+  <div class="card">
+    <div class="row"><button class="choice" id="prevMonth">‹</button><strong id="monthLabel"></strong><button class="choice" id="nextMonth">›</button></div>
+    <div class="daygrid" id="calendarGrid"></div>
+  </div>
+  <div class="card"><div class="row"><h3 id="selectedDateLabel">Selected day</h3><button class="choice" id="addCalendarEvent">＋ Add Event</button></div><div id="calendarEvents" class="hint empty">No events recorded for this day.</div></div>
+  <div class="card"><h3>Load Categories</h3><div class="metric"><span>Orchestra — Regular Work</span><b>Moderate / High</b></div><div class="metric"><span>Additional Projects / Jobs</span><b>Variable</b></div><div class="metric"><span>Concerts</span><b>Variable</b></div><div class="metric"><span>Wrocław — Teaching</span><b>Teaching / Travel</b></div></div>
+</section>
+
+<section class="view" id="morning">
+  <div class="topline"><button class="back" data-go="dashboard">‹ Dashboard</button><span class="eyebrow">CHECK-IN</span></div><h1>Morning Check-in</h1>
+  <div class="card">
+    <div class="field"><label>Sleep Duration</label><select id="sleepDuration"><option>Less than 5 hours</option><option>5–6 hours</option><option>6–7 hours</option><option selected>7–8 hours</option><option>8–9 hours</option><option>More than 9 hours</option></select></div>
+    <div class="field"><label>Sleep Quality · 1–5</label><div class="scale" data-scale="sleepQuality"><button>1</button><button>2</button><button>3</button><button class="selected">4</button><button>5</button></div></div>
+    <div class="field"><label>Morning Feeling</label><div class="grid2" data-choice="morningFeeling"><button class="choice">Low</button><button class="choice">Okay</button><button class="choice selected">Good</button><button class="choice">Very good</button></div></div>
+    <div class="field"><label>Embouchure Condition · 1–5</label><div class="scale" data-scale="morningEmb"><button>1</button><button>2</button><button class="selected">3</button><button>4</button><button>5</button></div><p class="hint">1 = very fresh · 3 = moderate fatigue · 5 = severe fatigue / pain / impaired playing</p></div>
+    <button class="btn primary" id="saveMorning">Save Morning Check-in</button>
+  </div>
+</section>
+
+<section class="view" id="evening">
+  <div class="topline"><button class="back" data-go="dashboard">‹ Dashboard</button><span class="eyebrow">CHECK-IN</span></div><h1>Evening Check-in</h1>
+  <div class="card">
+    <p class="hint">Practice, rehearsals and concerts are summarized automatically from your logs.</p>
+    <div class="field"><label>Physical Activity</label><div class="grid2" data-choice="physicalActivity"><button class="choice">No</button><button class="choice selected">Yes</button></div></div>
+    <div class="field"><label>Activity Type (optional)</label><div class="grid2" data-choice="activityType"><button class="choice">Gym</button><button class="choice">Walk</button><button class="choice selected">Other</button></div></div>
+    <div class="field"><label>Travel</label><div class="grid2" data-choice="travel"><button class="choice selected">No</button><button class="choice">Yes</button></div></div>
+    <div class="field"><label>Nap</label><div class="grid2" data-choice="nap"><button class="choice selected">No</button><button class="choice">Yes</button></div></div>
+    <div class="field"><label>Evening Feeling</label><div class="grid2" data-choice="eveningFeeling"><button class="choice">Low</button><button class="choice selected">Okay</button><button class="choice">Good</button><button class="choice">Very good</button></div></div>
+    <div class="field"><label>Notes (optional)</label><textarea id="eveningNotes"></textarea></div>
+    <button class="btn primary" id="saveEvening">Save Evening Check-in</button>
+  </div>
+</section>
+
+<section class="view" id="weekly">
+  <div class="topline"><button class="back" data-go="dashboard">‹ Dashboard</button><span class="eyebrow">WEEKLY REVIEW</span></div><h1>Weekly Check-in</h1>
+  <div class="card">
+    <p class="hint">Review the previous week and look ahead. You can save progress and return later.</p>
+    <div class="field"><label>Overall work intensity</label><div class="grid2" data-choice="weekIntensity"><button class="choice">Light</button><button class="choice selected">Moderate</button><button class="choice">High</button></div></div>
+    <div class="field"><label>How was your fatigue this week?</label><div class="scale" data-scale="weekFatigue"><button>1</button><button>2</button><button class="selected">3</button><button>4</button><button>5</button></div></div>
+    <div class="field"><label>Were extra engagements or travel tiring?</label><div class="grid2" data-choice="weekTravel"><button class="choice">No</button><button class="choice">Yes</button></div></div>
+    <div class="field"><label>Next week — general plan</label><textarea id="weekPlan" placeholder="Workload, practice and recovery intentions"></textarea></div>
+    <div class="field"><label>Anything else? (optional)</label><textarea id="weekNotes"></textarea></div>
+    <button class="btn primary" id="saveWeekly">Save Weekly Check-in</button>
+  </div>
+</section>
+
+<section class="view" id="planning">
+  <div class="topline"><button class="back" data-go="dashboard">‹ Dashboard</button><span class="eyebrow">PLANNING</span></div><h1>Practice Planning</h1>
+  <div class="tabs" id="planTabs"><button class="active" data-plan-tab="Today">Today</button><button data-plan-tab="Week">Week</button></div>
+  <div class="card"><div class="row"><h3>Suggested Plan</h3><span class="tag">Experimental</span></div><p id="suggestedPlan" class="hint">Keep practice light and prioritize sound quality, flexibility and recovery.</p><div class="field"><label>Your Decision</label><select id="planDecision"><option>Follow suggested plan</option><option>Reduce practice</option><option>Practice as planned</option><option>Rest / no playing</option><option>Other</option></select></div><div class="field"><label>Actual Activity</label><textarea id="actualActivity" placeholder="What did you actually do?"></textarea></div><div class="field"><label>Reason for changing plan (optional)</label><select id="planReason"><option>—</option><option>Felt fresh</option><option>Unexpected rehearsal</option><option>Needed rest</option><option>Personal choice</option></select></div><button class="btn primary" id="savePlan">Save Plan</button></div>
+  <div class="card"><h3>Plan Feedback</h3><p class="hint">Was this recommendation useful?</p><div class="grid2" data-choice="planFeedback"><button class="choice">Helpful</button><button class="choice">Partly Helpful</button><button class="choice">Not Helpful</button></div></div>
+</section>
+
+<section class="view" id="performance">
+  <div class="topline"><button class="back" data-go="dashboard">‹ Dashboard</button><span class="eyebrow">PERFORMANCE</span></div><h1>Performance Mode</h1>
+  <div class="card performance"><p class="hint">One clear idea.</p><div class="orb" id="performanceCue">Air becomes my singing voice.</div><p class="hint">Breathe. Listen. Trust the process.</p><button class="btn primary" id="exitPerformance">Exit Performance Mode</button></div>
+  <div class="card"><h3>Mental Cues</h3><div class="list-row">Air becomes my singing voice.</div><div class="list-row">Just sing.</div><div class="list-row">I believe in myself.</div><div class="list-row">I belong here.</div></div>
+</section>
+
+<section class="view" id="insights">
+  <h1>Personal Insights</h1>
+  <div class="tabs" data-insight-tabs><button class="active">7 Days</button><button>30 Days</button><button>90 Days</button></div>
+  <div class="card"><div class="row"><span class="muted">Average Index</span><strong class="score" style="font-size:38px" id="averageIndex">—</strong></div><div class="chart" id="indexChart"></div><p class="hint" id="insightSummary">Insights will become more meaningful as you record data.</p></div>
+  <div class="card"><h3>Patterns to observe</h3><div class="metric"><span>Embouchure fatigue</span><b id="insEmb">Not enough data</b></div><div class="metric"><span>Mental fatigue</span><b id="insMental">Not enough data</b></div><div class="metric"><span>Sleep</span><b id="insSleep">Not enough data</b></div><div class="metric"><span>Workload</span><b id="insLoad">Not enough data</b></div></div>
+  <button class="btn" data-go="reports">PDF Reports</button>
+</section>
+
+<section class="view" id="settings">
+  <h1>Settings</h1>
+  <div class="card">
+    <button class="btn" data-go="morning">Morning Check-in</button><button class="btn" data-go="evening">Evening Check-in</button><button class="btn" data-go="weekly">Weekly Check-in</button>
+    <button class="btn" data-go="planning">Practice Planning</button><button class="btn" data-go="performance">Performance Mode</button>
+    <button class="btn" data-go="lifestyle">Lifestyle Log</button><button class="btn" data-go="search">Global Search</button>
+    <button class="btn" data-go="dienstplan">Import Dienstplan (PDF)</button><button class="btn" data-go="reports">PDF Reports</button>
+    <button class="btn" data-go="backup">Backup & Restore</button><button class="btn" data-go="diagnostics">System Diagnostics</button>
+  </div>
+  <div class="card"><h3>Preferences</h3><div class="metric"><span>Language</span><b>English</b></div><div class="metric"><span>Date format</span><b>DD.MM.YYYY</b></div><div class="metric"><span>Time format</span><b>24-hour</b></div><div class="metric"><span>Storage</span><b>Local on this iPhone</b></div><div class="metric"><span>Offline mode</span><b id="offlineStatus">Available</b></div></div>
+  <div class="card"><h3>Data</h3><p class="hint">Your data is stored locally on this iPhone. Remember to export backups regularly.</p><div class="metric"><span>Saved days</span><b id="savedDays">0</b></div><div class="metric"><span>Practice entries</span><b id="savedPractice">0</b></div><div class="metric"><span>Calendar events</span><b id="savedEvents">0</b></div><button class="btn danger" id="deleteAll">Delete All Data</button></div>
+  <p class="hint">LIBRA Lab · Experimental project · Created by WP</p>
+</section>
+
+<section class="view" id="lifestyle">
+  <div class="topline"><button class="back" data-go="dashboard">‹ Dashboard</button><span class="eyebrow">LIFESTYLE</span></div><h1>Lifestyle Log</h1>
+  <div class="card"><div class="row"><div><h3>Coffee today</h3><p class="hint">Each tap records one coffee and the current time.</p></div><strong class="score" style="font-size:38px" id="coffeeCount">0</strong></div><div class="screen-actions"><button class="btn primary" id="addCoffee">＋ Coffee</button><button class="btn" id="undoCoffee">Undo</button></div><div class="metric"><span>Daily level</span><b id="coffeeLevel">0 · OK</b></div><p class="hint" id="coffeeAdvice">One coffee is OK. Two is moderate; more than two is high.</p><div class="metric"><span>Concert today / tomorrow</span><b id="concertCoffee">No concert detected</b></div><p class="hint">Avoid coffee on a concert day and the day before a concert.</p></div>
+  <div class="card"><h3>Today's entries</h3><div id="coffeeEntries" class="empty">No coffee recorded.</div></div>
+</section>
+
+<section class="view" id="search">
+  <div class="topline"><button class="back" data-go="dashboard">‹ Dashboard</button><span class="eyebrow">GLOBAL SEARCH</span></div><h1>Search</h1><div class="field"><input id="searchInput" placeholder="Search your practice, rehearsals, concerts and notes..."></div><div id="searchResults" class="card empty">Search your saved entries.</div>
+</section>
+
+<section class="view" id="dienstplan">
+  <div class="topline"><button class="back" data-go="calendar">‹ Calendar</button><span class="eyebrow">IMPORT</span></div><h1>Import Dienstplan</h1><p class="hint">Select a PDF. Review recognized information and manually confirm each uncertain item before importing.</p>
+  <div class="card"><div class="field"><label>Monthly Dienstplan PDF</label><input type="file" id="dienstplanFile" accept="application/pdf"></div><p class="hint" id="pdfStatus">PDF selection is available. This offline build does not include a PDF text-extraction engine; add events manually from the preview until a parser is integrated.</p><button class="btn" id="manualImportEvent">＋ Add event manually</button></div>
+  <div class="card"><h3>Import safety</h3><p class="hint">Existing manual edits are never silently overwritten. A production PDF parser must show detected changes and request confirmation before updating calendar entries.</p></div>
+</section>
+
+<section class="view" id="reports">
+  <div class="topline"><button class="back" data-go="insights">‹ Insights</button><span class="eyebrow">EXPORT</span></div><h1>PDF Reports</h1>
+  <div class="card"><div class="field"><label>Report period</label><select id="reportPeriod"><option>Weekly Report</option><option>Monthly Report</option><option>Custom Date Range</option></select></div><div class="field"><label>Start date</label><input type="date" id="reportStart"></div><div class="field"><label>End date</label><input type="date" id="reportEnd"></div><button class="btn primary" id="generateReport">Open Print / Save as PDF</button><p class="hint">The report uses your recorded data and can be saved as PDF from the iPhone share / print flow.</p></div>
+  <div class="card"><h3>Report contents</h3><div class="list-row">Daily Stress-Rest Index</div><div class="list-row">Daily load by Practice / Rehearsals / Concerts</div><div class="list-row">Total duration and load intensity</div><div class="list-row">Embouchure and Mental Fatigue</div><div class="list-row">Sleep duration and quality</div><div class="list-row">Up to 3 Key Findings</div></div>
+</section>
+
+<section class="view" id="backup">
+  <div class="topline"><button class="back" data-go="settings">‹ Settings</button><span class="eyebrow">DATA</span></div><h1>Backup & Restore</h1>
+  <div class="card"><h3>Export Full Backup</h3><p class="hint">Download all locally stored records as a JSON backup file.</p><button class="btn primary" id="exportBackup">Export Full Backup</button></div>
+  <div class="card"><h3>Restore Full Backup</h3><p class="hint">Restore uses Replace All. Existing data will be replaced after preview and confirmation.</p><div class="field"><input type="file" id="backupFile" accept="application/json,.json"></div><div id="restorePreview" class="hint">No backup selected.</div><button class="btn" id="previewRestore">Preview Restore</button><button class="btn danger" id="confirmRestore" disabled>Confirm Replace All</button></div>
+  <div class="card"><h3>CSV Export</h3><button class="btn" id="exportCSV">Export practice and event CSV</button></div>
+</section>
+
+<section class="view" id="diagnostics">
+  <div class="topline"><button class="back" data-go="settings">‹ Settings</button><span class="eyebrow">SYSTEM</span></div><h1>System Diagnostics</h1>
+  <div class="card" id="diagnosticResults"><div class="metric"><span>Local Database</span><b>Ready</b></div><div class="metric"><span>Data Saving</span><b>Local storage</b></div><div class="metric"><span>Calendar</span><b>Available</b></div><div class="metric"><span>Index Calculation</span><b>Experimental</b></div><div class="metric"><span>Offline Mode</span><b id="diagOffline">Checking…</b></div><button class="btn primary" id="runDiagnostics">Run Diagnostics</button><button class="btn" id="exportDiagnostics">Export Diagnostic Report</button></div>
+  <div class="card"><h3>Error History</h3><div id="errorHistory" class="empty">No recorded errors.</div></div>
+</section>
+
+<section class="view" id="fullday">
+  <div class="topline"><button class="back" data-go="calendar">‹ Calendar</button><span class="eyebrow">DAY DETAILS</span></div><h1 id="fullDayTitle">Full Day</h1><div id="fullDayContent"></div>
+</section>
+
+<section class="view" id="weeklyinsights">
+  <div class="topline"><button class="back" data-go="insights">‹ Insights</button><span class="eyebrow">ARCHIVE</span></div><h1>Weekly & Monthly Insights</h1><div class="card" id="insightArchive"><p class="hint">Insights will appear as enough real data accumulates.</p></div>
+</section>
+
+</main>
+
+<div class="menu-overlay" id="menuOverlay"><div class="menu-scrim" id="menuScrim"></div><aside class="menu-panel"><div class="menu-head"><img src="assets/libra-lab-horizontal.jpg" alt="LIBRA Lab"><button id="closeMenu" class="header-btn">×</button></div><button class="menu-search" data-go="search">⌕　Search practice, rehearsals, concerts and notes</button><div class="menu-group"><span>Music & Work</span><button data-go="add">Practice Log / Add Activity</button><button data-go="calendar">Calendar & Load</button><button data-go="performance">Performance Mode</button></div><div class="menu-group"><span>Planning</span><button data-go="planning">Practice Planning</button></div><div class="menu-group"><span>Insights & Lifestyle</span><button data-go="insights">Personal Insights</button><button data-go="lifestyle">Lifestyle Log</button></div><div class="menu-group"><span>Check-ins</span><button data-go="morning">Morning Check-in</button><button data-go="evening">Evening Check-in</button><button data-go="weekly">Weekly Check-in</button></div><div class="menu-group"><span>Settings</span><button data-go="settings">Settings & Data</button></div></aside></div>
+<div class="toast" id="toast"></div>
+<div class="overlay" id="confirmOverlay"><div class="sheet"><h2 id="confirmTitle">Confirm</h2><p class="hint" id="confirmText"></p><div class="screen-actions"><button class="btn" id="confirmCancel">Cancel</button><button class="btn primary" id="confirmOk">Confirm</button></div></div></div>
+<script>
+const DB_KEY='libra_lab_local_v1';
+const today=()=>new Date().toLocaleDateString('en-CA');
+const dateLabel=d=>{if(!d)return '';const x=new Date(d+'T12:00:00');return x.toLocaleDateString('en-GB',{day:'2-digit',month:'2-digit',year:'numeric'})};
+const fresh=()=>({version:1,practices:[],events:[],mornings:{},evenings:{},weeklies:{},plans:{},coffee:{},notes:[],reports:[],errors:[],settings:{performanceMode:false}});
+let db=loadDB(),selectedDate=today(),calendarMonth=new Date(),pendingRestore=null,pendingConfirm=null;
+function loadDB(){try{return {...fresh(),...JSON.parse(localStorage.getItem(DB_KEY)||'{}')}}catch(e){return fresh()}}
+function saveDB(){try{localStorage.setItem(DB_KEY,JSON.stringify(db));refresh();}catch(e){toast('Save failed — your changes have not been saved.');db.errors.push({date:new Date().toISOString(),message:'Local storage save failed'});}}
+function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.style.display='block';clearTimeout(window._toastTimer);window._toastTimer=setTimeout(()=>el.style.display='none',2400)}
+function go(id){document.getElementById('menuOverlay')?.classList.remove('show');document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));window.scrollTo({top:0,behavior:'smooth'});if(id==='calendar')renderCalendar();if(id==='insights')renderInsights();if(id==='settings')renderSettings();if(id==='dashboard')refresh();}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b)go(b.dataset.go);const n=e.target.closest('[data-nav]');if(n)go(n.dataset.nav);});
+
+function getChoice(name){const el=document.querySelector(`[data-choice="${name}"] .selected`);return el?el.textContent.trim():''}
+function getScale(name){const el=document.querySelector(`[data-scale="${name}"] .selected`);return el?Number(el.textContent):3}
+document.addEventListener('click',e=>{const c=e.target.closest('[data-choice] .choice');if(c){c.parentElement.querySelectorAll('.choice').forEach(x=>x.classList.remove('selected'));c.classList.add('selected')}const s=e.target.closest('[data-scale] button');if(s){s.parentElement.querySelectorAll('button').forEach(x=>x.classList.remove('selected'));s.classList.add('selected')}});
+function getDuration(){const c=document.querySelector('#practiceDurations .selected');if(!c)return 45;if(c.hasAttribute('data-custom-duration'))return Number(document.getElementById('customDuration').value)||45;return ({'30 min':30,'45 min':45,'1 h':60,'1.5 h':90,'2 h':120,'2.5 h':150,'3 h':180})[c.textContent.trim()]||45}
+document.querySelectorAll('#practiceDurations button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#practiceDurations button').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');document.getElementById('customDuration').classList.toggle('hidden',!b.hasAttribute('data-custom-duration'))}));
+function addMinutes(start,end){if(!start||!end)return 0;let [h,m]=start.split(':').map(Number),[h2,m2]=end.split(':').map(Number);let d=(h2*60+m2)-(h*60+m);return d<0?d+1440:d}
+function dateEntries(date){return db.events.filter(x=>x.date===date)}
+function dayLoad(date){const p=db.practices.filter(x=>x.date===date).reduce((a,x)=>a+x.duration,0);const ev=dateEntries(date).reduce((a,x)=>a+x.duration,0);return {practice:p,work:ev}}
+function coffeeCount(date=today()){return (db.coffee[date]||[]).length}
+function hasConcert(date){return db.events.some(e=>e.date===date&&/concert/i.test(e.type))}
+function coffeeAdvice(date=today()){if(hasConcert(date)||hasConcert(addDays(date,1)))return 'Avoid coffee today — a concert is scheduled today or tomorrow.';const n=coffeeCount(date);return n<=1?'One coffee is OK.':n===2?'Two coffees · Moderate.':'More than two coffees · High.'}
+function addDays(d,n){const x=new Date(d+'T12:00:00');x.setDate(x.getDate()+n);return x.toLocaleDateString('en-CA')}
+function dayRecord(date){return {morning:db.mornings[date]||null,evening:db.evenings[date]||null,practice:db.practices.filter(x=>x.date===date),events:dateEntries(date),coffee:db.coffee[date]||[]}}
+function calcIndex(date){
+  // Provisional transparent heuristic. Missing fields are neutral, not zero.
+  const r=dayRecord(date);let points=68,known=0,whyGood=[],whyBad=[];
+  if(r.morning){known++;const sleepMap={'Less than 5 hours':-16,'5–6 hours':-10,'6–7 hours':-5,'7–8 hours':2,'8–9 hours':5,'More than 9 hours':3};points+=(sleepMap[r.morning.sleepDuration]||0);if(r.morning.sleepQuality>=4){points+=4;whyGood.push('Good sleep quality')}else if(r.morning.sleepQuality<=2){points-=6;whyBad.push('Low sleep quality')}
+    const feelMap={Low:-10,Okay:-2,Good:4,'Very good':7};points+=feelMap[r.morning.feeling]||0;if(r.morning.embouchure>=4){points-=7;whyBad.push('Morning embouchure fatigue')}else if(r.morning.embouchure<=2){points+=4;whyGood.push('Fresh embouchure')}
+  }
+  const totalPractice=r.practice.reduce((a,x)=>a+x.duration,0),work=r.events.reduce((a,x)=>a+x.duration,0);
+  const intensityScore=x=>x==='High'?1.35:x==='Light'?.65:1;
+  let load=0;for(const p of r.practice){const cat=p.category==='Free Playing'?.45:p.category==='Warm-up'?.55:p.category==='Ensemble / Social Playing'?1.05:p.category==='Solo Repertoire'||p.category==='Orchestral Excerpts'?1.25:0.85;load+=p.duration/60*cat*intensityScore(p.intensity)}
+  for(const e of r.events){let k=/concert/i.test(e.type)?1.35:/teaching/i.test(e.type)?0.75:1.15;load+=e.duration/60*k*intensityScore(e.intensity)}
+  points-=Math.min(18,load*2.1);if(load>3.2)whyBad.push('High musical workload');else if(load>0&&load<1.5)whyGood.push('Moderate activity load');
+  const fatigueVals=[...r.practice.map(x=>x.embFatigue),...r.events.map(x=>x.embFatigue)].filter(Number.isFinite),mentalVals=[...r.practice.map(x=>x.mentalFatigue),...r.events.map(x=>x.mentalFatigue)].filter(Number.isFinite);
+  if(fatigueVals.length){const avg=fatigueVals.reduce((a,b)=>a+b,0)/fatigueVals.length;points+=(3-avg)*3.2;if(avg>=4)whyBad.push('Elevated embouchure fatigue');if(avg<=2)whyGood.push('Low embouchure fatigue')}
+  if(mentalVals.length){const avg=mentalVals.reduce((a,b)=>a+b,0)/mentalVals.length;points+=(3-avg)*2.4;if(avg>=4)whyBad.push('High mental fatigue')}
+  if(r.evening){known++;if(r.evening.feeling==='Low'){points-=5;whyBad.push('Low evening condition')}if(r.evening.feeling==='Very good'){points+=3;whyGood.push('Good evening condition')}}
+  const coffee=coffeeCount(date);if(coffee>=3){points-=2;whyBad.push('High coffee intake')}
+  // Delayed load from previous 2 days, decaying.
+  for(let back=1;back<=2;back++){const prev=dayRecord(addDays(date,-back));const prevLoad=prev.practice.reduce((a,x)=>a+x.duration/60*(x.intensity==='High'?1.35:x.intensity==='Light'?.65:1),0)+prev.events.reduce((a,x)=>a+x.duration/60*(x.intensity==='High'?1.35:x.intensity==='Light'?.65:1),0);points-=Math.min(5,prevLoad*(back===1?1.6:.8))}
+  if(r.evening?.travel==='Yes')points-=2;
+  const value=Math.max(0,Math.min(100,Math.round(points)));
+  let advice=value<35?'Prioritise recovery. Keep playing to a minimum and protect your sleep.':value<55?'Reduce musical load today. Focus on gentle sound work and recovery.':value<75?'Keep a steady pace today and give yourself a proper recovery window.':'You appear well placed for focused work. Keep breaks and sound quality in focus.';
+  return {value,known,good:whyGood,bad:whyBad,advice};
+}
+function latestIndex(date=today()){const d=calcIndex(date);return d}
+function refresh(){
+  const d=latestIndex();document.getElementById('indexValue').textContent=d.value;document.getElementById('indexBar').style.width=d.value+'%';document.getElementById('adviceText').textContent=d.advice;
+  document.getElementById('indexUpdated').textContent=d.known?'Experimental estimate · Based on recorded information.':'Experimental estimate · Add check-ins and activities to refine your index.';
+  const r=dayRecord(today()),tot=dayLoad(today());document.getElementById('todayLabel').textContent=dateLabel(today());document.getElementById('todayPractice').textContent=tot.practice+' min';document.getElementById('todayWork').textContent=tot.work+' min';document.getElementById('todayCheckin').textContent=(r.morning?'Morning ':'')+(r.evening?'Evening':'')||'Not completed';
+  const overview=document.getElementById('overviewContent');const rows=[['Sleep',r.morning?.sleepDuration||'Not completed'],['Morning Condition',r.morning?.feeling||'Not completed'],['Embouchure',r.morning?`${r.morning.embouchure}/5`:'Not completed'],['Practice',tot.practice?tot.practice+' min':'No entries'],['Rehearsals & Concerts',tot.work?tot.work+' min':'No entries'],['Coffee',String(coffeeCount())],['Evening Check-in',r.evening?'Completed':'Not completed']];
+  overview.innerHTML=rows.map(([a,b])=>`<div class="metric"><span>${a}</span><b>${b}</b></div>`).join('');
+  renderCoffee();renderSettings();
+}
+document.getElementById('overviewToggle').addEventListener('click',()=>{const el=document.getElementById('overviewCard');el.classList.toggle('open');document.getElementById('overviewChevron').textContent=el.classList.contains('open')?'⌃':'⌄'});
+document.getElementById('savePractice').addEventListener('click',()=>{const p={id:crypto.randomUUID(),date:today(),category:document.getElementById('practiceCategory').value,duration:getDuration(),intensity:getChoice('practiceIntensity')||'Moderate',loadType:getChoice('practiceLoad')||'Both',embFatigue:getScale('embFatigue'),mentalFatigue:getScale('mentalFatigue'),notes:document.getElementById('practiceNotes').value,createdAt:new Date().toISOString()};db.practices.push(p);saveDB();toast('Practice session saved.');go('dashboard')});
+document.getElementById('eventDate').value=today();
+document.querySelectorAll('[data-event-type]').forEach(b=>b.addEventListener('click',()=>{document.getElementById('eventType').value=b.dataset.eventType;document.getElementById('eventTitle').textContent=b.dataset.eventType;go('event')}));
+document.getElementById('saveEvent').addEventListener('click',()=>{const date=document.getElementById('eventDate').value||today();const start=document.getElementById('eventStart').value,end=document.getElementById('eventEnd').value;const duration=addMinutes(start,end);if(!duration){toast('Please enter a valid start and end time.');return}db.events.push({id:crypto.randomUUID(),date,type:document.getElementById('eventType').value,start,end,duration,intensity:getChoice('eventIntensity')||'Moderate',loadType:getChoice('eventLoad')||'Both',embFatigue:getScale('eventEmb'),mentalFatigue:getScale('eventMental'),notes:document.getElementById('eventNotes').value,manual:true});saveDB();toast('Calendar event saved.');go('calendar')});
+document.getElementById('saveMorning').addEventListener('click',()=>{db.mornings[today()]={sleepDuration:document.getElementById('sleepDuration').value,sleepQuality:getScale('sleepQuality'),feeling:getChoice('morningFeeling')||'Good',embouchure:getScale('morningEmb'),updatedAt:new Date().toISOString()};saveDB();toast('Morning check-in saved.');go('dashboard')});
+document.getElementById('saveEvening').addEventListener('click',()=>{db.evenings[today()]={physicalActivity:getChoice('physicalActivity'),activityType:getChoice('activityType'),travel:getChoice('travel'),nap:getChoice('nap'),feeling:getChoice('eveningFeeling')||'Okay',notes:document.getElementById('eveningNotes').value,updatedAt:new Date().toISOString()};saveDB();toast('Evening check-in saved.');go('dashboard')});
+document.getElementById('saveWeekly').addEventListener('click',()=>{db.weeklies[today()]={intensity:getChoice('weekIntensity'),fatigue:getScale('weekFatigue'),travel:getChoice('weekTravel'),plan:document.getElementById('weekPlan').value,notes:document.getElementById('weekNotes').value,updatedAt:new Date().toISOString()};saveDB();toast('Weekly check-in saved.');go('dashboard')});
+document.getElementById('savePlan').addEventListener('click',()=>{db.plans[today()]={decision:document.getElementById('planDecision').value,actual:document.getElementById('actualActivity').value,reason:document.getElementById('planReason').value,feedback:getChoice('planFeedback'),updatedAt:new Date().toISOString()};saveDB();toast('Practice plan saved.')});
+function renderCalendar(){const y=calendarMonth.getFullYear(),m=calendarMonth.getMonth();document.getElementById('monthLabel').textContent=calendarMonth.toLocaleDateString('en-US',{month:'long',year:'numeric'});const first=new Date(y,m,1).getDay(),offset=(first+6)%7,days=new Date(y,m+1,0).getDate();const grid=document.getElementById('calendarGrid');grid.innerHTML=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(x=>`<div class="weekday">${x}</div>`).join('');for(let i=0;i<offset;i++)grid.innerHTML+='<div></div>';for(let n=1;n<=days;n++){const date=new Date(y,m,n).toLocaleDateString('en-CA');const has=dateEntries(date).length||db.practices.some(p=>p.date===date);grid.innerHTML+=`<button class="day ${date===selectedDate?'selected':''} ${has?'has-event':''}" data-date="${date}">${n}</button>`}document.getElementById('selectedDateLabel').textContent=dateLabel(selectedDate);renderCalendarEvents()}
+document.getElementById('prevMonth').onclick=()=>{calendarMonth.setMonth(calendarMonth.getMonth()-1);renderCalendar()};document.getElementById('nextMonth').onclick=()=>{calendarMonth.setMonth(calendarMonth.getMonth()+1);renderCalendar()};
+document.getElementById('calendarGrid').addEventListener('click',e=>{const b=e.target.closest('[data-date]');if(!b)return;selectedDate=b.dataset.date;renderCalendar()});
+function renderCalendarEvents(){const box=document.getElementById('calendarEvents');const ev=dateEntries(selectedDate),pr=db.practices.filter(x=>x.date===selectedDate);if(!ev.length&&!pr.length){box.className='hint empty';box.textContent='No events recorded for this day.';return}box.className='';box.innerHTML=[...ev.map(e=>`<div class="metric"><span>${e.type} · ${e.start}–${e.end}</span><b>${e.duration} min</b></div>`),...pr.map(p=>`<div class="metric"><span>Practice · ${p.category}</span><b>${p.duration} min</b></div>`)].join('')+`<button class="btn" id="openFullDay">View Full Day</button>`;document.getElementById('openFullDay').onclick=()=>renderFullDay(selectedDate)}
+document.getElementById('addCalendarEvent').onclick=()=>{document.getElementById('eventDate').value=selectedDate;go('event')};
+function renderFullDay(date){go('fullday');document.getElementById('fullDayTitle').textContent='Full Day · '+dateLabel(date);const r=dayRecord(date),tot=dayLoad(date);const sections=[['Sleep',r.morning?.sleepDuration||'Not completed'],['Morning Check-in',r.morning?`${r.morning.feeling} · Embouchure ${r.morning.embouchure}/5`:'Not completed'],['Practice',r.practice.length?r.practice.map(x=>`${x.category} · ${x.duration} min`).join('<br>'):'No entries'],['Rehearsals & Concerts',r.events.length?r.events.map(x=>`${x.type} · ${x.start}–${x.end}`).join('<br>'):'No entries'],['Evening Check-in',r.evening?`${r.evening.feeling} · Travel ${r.evening.travel}`:'Not completed'],['Lifestyle',`${r.coffee.length} coffee(s)`],['Stress-Rest Index',String(calcIndex(date).value)]];document.getElementById('fullDayContent').innerHTML=sections.map(([a,b])=>`<div class="card"><div class="row"><h3>${a}</h3><span class="small muted">${b}</span></div></div>`).join('')+`<div class="card"><div class="metric"><span>Total Practice Time</span><b>${tot.practice} min</b></div><div class="metric"><span>Total Rehearsal & Concert Time</span><b>${tot.work} min</b></div><div class="metric"><span>Daily Stress-Rest Index</span><b>${calcIndex(date).value}</b></div></div>`}
+function renderInsights(){const dates=[...new Set([...Object.keys(db.mornings),...Object.keys(db.evenings),...db.practices.map(x=>x.date),...db.events.map(x=>x.date)])].sort().slice(-7);const vals=dates.map(d=>calcIndex(d).value);const avg=vals.length?Math.round(vals.reduce((a,b)=>a+b,0)/vals.length):null;document.getElementById('averageIndex').textContent=avg??'—';document.getElementById('indexChart').innerHTML=vals.length?vals.map(v=>`<i style="height:${Math.max(8,v)}%"></i>`).join(''):'<span class="hint">No recorded data yet.</span>';document.getElementById('insightSummary').textContent=vals.length?`Based on ${vals.length} recorded day(s). This is an experimental estimate, not a clinical measurement.`:'Insights will become more meaningful as you record data.';const p=db.practices;document.getElementById('insEmb').textContent=p.length?`Avg ${ (p.reduce((a,x)=>a+x.embFatigue,0)/p.length).toFixed(1)}/5`:'Not enough data';document.getElementById('insMental').textContent=p.length?`Avg ${ (p.reduce((a,x)=>a+x.mentalFatigue,0)/p.length).toFixed(1)}/5`:'Not enough data';document.getElementById('insSleep').textContent=Object.keys(db.mornings).length+' check-in(s)';document.getElementById('insLoad').textContent=(db.practices.length+db.events.length)+' logged activities'}
+function renderCoffee(){const n=coffeeCount();document.getElementById('coffeeCount').textContent=n;document.getElementById('coffeeLevel').textContent=n===0?'0 · None':n===1?'1 · OK':n===2?'2 · Moderate':n+' · High';document.getElementById('coffeeLevel').style.color=n<=1?'var(--teal)':n===2?'var(--gold)':'var(--red)';document.getElementById('coffeeAdvice').textContent=coffeeAdvice();document.getElementById('concertCoffee').textContent=hasConcert(today())?'Concert today':hasConcert(addDays(today(),1))?'Concert tomorrow':'No concert detected';const arr=db.coffee[today()]||[];document.getElementById('coffeeEntries').innerHTML=arr.length?arr.map(x=>`<div class="metric"><span>${new Date(x).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}</span><b>Coffee</b></div>`).join(''):'No coffee recorded.'}
+document.getElementById('addCoffee').onclick=()=>{db.coffee[today()]??=[];db.coffee[today()].push(new Date().toISOString());saveDB();toast('Coffee recorded.')};document.getElementById('undoCoffee').onclick=()=>{db.coffee[today()]??=[];db.coffee[today()].pop();saveDB();toast('Last coffee entry removed.')};
+document.getElementById('searchInput').addEventListener('input',e=>{const q=e.target.value.toLowerCase();const entries=[...db.practices.map(x=>({...x,kind:'Practice',text:`${x.category} ${x.notes||''}`})),...db.events.map(x=>({...x,kind:x.type,text:`${x.type} ${x.notes||''}`}))].filter(x=>`${x.kind} ${x.text} ${x.date}`.toLowerCase().includes(q));document.getElementById('searchResults').innerHTML=q?(entries.length?entries.map(x=>`<div class="metric"><span>${x.kind} · ${dateLabel(x.date)} · ${x.text}</span><b>${x.duration} min</b></div>`).join(''):'No results found. Try a different search.'):'Search your saved entries.'});
+document.getElementById('manualImportEvent').onclick=()=>{document.getElementById('eventDate').value=selectedDate;go('event')};
+document.getElementById('exportBackup').onclick=()=>download('LIBRA-Lab_Full-Backup_'+today()+'.json',JSON.stringify(db,null,2),'application/json');
+document.getElementById('exportCSV').onclick=()=>{const rows=[['kind','date','type','duration','intensity','loadType','embFatigue','mentalFatigue','notes'],...db.practices.map(x=>['Practice',x.date,x.category,x.duration,x.intensity,x.loadType,x.embFatigue,x.mentalFatigue,x.notes]),...db.events.map(x=>['Event',x.date,x.type,x.duration,x.intensity,x.loadType,x.embFatigue,x.mentalFatigue,x.notes])];download('LIBRA-Lab_Activities_'+today()+'.csv',rows.map(r=>r.map(v=>'"'+String(v??'').replaceAll('"','""')+'"').join(',')).join('\\n'),'text/csv')};
+function download(name,content,type){const a=document.createElement('a'),u=URL.createObjectURL(new Blob([content],{type}));a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)}
+document.getElementById('backupFile').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;try{pendingRestore=JSON.parse(await f.text());document.getElementById('restorePreview').textContent=`Preview: ${pendingRestore.practices?.length||0} practice entries, ${pendingRestore.events?.length||0} calendar events. Existing data will be replaced.`;document.getElementById('confirmRestore').disabled=false}catch(err){pendingRestore=null;toast('Invalid backup file.')}});
+document.getElementById('previewRestore').onclick=()=>toast(pendingRestore?'Backup preview is ready.':'Choose a backup file first.');
+document.getElementById('confirmRestore').onclick=()=>{if(!pendingRestore)return;askConfirm('Replace all data?','This will replace all existing LIBRA Lab data. This cannot be undone.',()=>{db={...fresh(),...pendingRestore};saveDB();pendingRestore=null;document.getElementById('confirmRestore').disabled=true;toast('Backup restored.');go('dashboard')})};
+document.getElementById('deleteAll').onclick=()=>askConfirm('Delete all data?','Export a backup first if you want to keep your records. Type DELETE in the next step is not available in this compact build; confirm only if you intend to erase all local data.',()=>{db=fresh();saveDB();toast('All local data deleted.')});
+function askConfirm(title,body,fn){document.getElementById('confirmTitle').textContent=title;document.getElementById('confirmText').textContent=body;document.getElementById('confirmOverlay').classList.add('show');pendingConfirm=fn}
+document.getElementById('confirmCancel').onclick=()=>document.getElementById('confirmOverlay').classList.remove('show');document.getElementById('confirmOk').onclick=()=>{document.getElementById('confirmOverlay').classList.remove('show');pendingConfirm?.();pendingConfirm=null};
+document.getElementById('runDiagnostics').onclick=()=>{document.getElementById('diagOffline').textContent=navigator.onLine?'Online':'Offline';toast('Diagnostics completed.')};
+document.getElementById('exportDiagnostics').onclick=()=>download('LIBRA-Lab-Diagnostics.txt',`LIBRA Lab Diagnostics\\nDate: ${new Date().toISOString()}\\nApp version: 1.0.0\\nLocal storage: ${!!localStorage}\\nOnline: ${navigator.onLine}\\nPractice entries: ${db.practices.length}\\nCalendar events: ${db.events.length}`,'text/plain');
+document.getElementById('generateReport').onclick=()=>{const s=document.getElementById('reportStart').value||addDays(today(),-6),e=document.getElementById('reportEnd').value||today();const items=[...db.practices.filter(x=>x.date>=s&&x.date<=e).map(x=>({date:x.date,type:x.category,duration:x.duration})),...db.events.filter(x=>x.date>=s&&x.date<=e).map(x=>({date:x.date,type:x.type,duration:x.duration}))];const w=window.open('','_blank');if(!w){toast('Allow pop-ups to create a report.');return}w.document.write(`<html><head><title>LIBRA Lab Report</title><style>body{font:14px Arial;margin:35px;color:#18283a}h1{letter-spacing:4px}table{width:100%;border-collapse:collapse}td,th{padding:8px;border-bottom:1px solid #ddd;text-align:left}</style></head><body><h1>LIBRA LAB</h1><h2>${document.getElementById('reportPeriod').value}</h2><p>${dateLabel(s)} – ${dateLabel(e)}</p><h3>Stress-Rest Index</h3><p>${Math.round(items.length?items.reduce((a,x)=>a+calcIndex(x.date).value,0)/items.length:calcIndex(today()).value)}</p><table><tr><th>Date</th><th>Activity</th><th>Duration</th></tr>${items.map(x=>`<tr><td>${dateLabel(x.date)}</td><td>${x.type}</td><td>${x.duration} min</td></tr>`).join('')}</table><p>Experimental estimate based on locally recorded data.</p></body></html>`);w.document.close();w.print()};
+function renderSettings(){document.getElementById('savedDays').textContent=new Set([...Object.keys(db.mornings),...Object.keys(db.evenings),...db.practices.map(x=>x.date),...db.events.map(x=>x.date)]).size;document.getElementById('savedPractice').textContent=db.practices.length;document.getElementById('savedEvents').textContent=db.events.length;document.getElementById('offlineStatus').textContent=navigator.onLine?'Online':'Offline'}
+document.getElementById('moreBtn').onclick=()=>document.getElementById('menuOverlay').classList.add('show');document.getElementById('closeMenu').onclick=()=>document.getElementById('menuOverlay').classList.remove('show');document.getElementById('menuScrim').onclick=()=>document.getElementById('menuOverlay').classList.remove('show');document.getElementById('exitPerformance').onclick=()=>go('dashboard');
+if('serviceWorker' in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('sw.js').catch(()=>{});
+renderCalendar();refresh();renderInsights();
+</script>
+</body></html>
