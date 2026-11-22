@@ -1,40 +1,17 @@
-# LIBRA Lab — initial functional PWA
+# LIBRA Lab v4 — flat upload package
 
-This repository is a standalone, separate project. It does not modify the existing Stress-Rest app.
+All files are in the repository root. There is no `assets` folder: the approved LIBRA Lab logo is embedded directly inside `index.html`.
 
-## Run locally
-Open `index.html` in a modern browser for a basic local preview. For PWA installation and offline caching, serve the folder over HTTPS or localhost.
+## Upload
+1. Export a backup from the current app first.
+2. Open the `LIBRA-LAB` repository on GitHub.
+3. Replace the root files with these files: `index.html`, `manifest.webmanifest`, `sw.js`, `README.md`, `CHANGELOG.md`, and `INDEX-MODEL.md`.
+4. Do not create or upload an `assets` folder.
+5. Keep GitHub Pages set to deploy from `main` / root.
+6. After deployment, close and reopen the app on iPhone. If the old version remains, open the site in Safari and reload.
 
-## GitHub Pages
-1. Create a new repository named `LIBRA-Lab`.
-2. Upload the contents of this folder to the repository root.
-3. In Settings → Pages, deploy from the `main` branch / root.
-4. Open the Pages URL on iPhone Safari → Share → Add to Home Screen.
+## Data
+The app retains the localStorage key `libra_lab_local_v1` and existing stored data structure. Back up your data before replacing files.
 
-## Included
-- Dashboard with Stress-Rest Index and integrated Advice
-- Today’s Overview, expandable
-- Practice Log and rehearsal/concert event entry
-- Monthly Calendar & Load with manual events
-- Morning, Evening and Weekly Check-ins
-- Practice Planning
-- Performance Mode
-- Personal Insights
-- Coffee-only Lifestyle Log
-- Global Search
-- JSON full backup / restore (Replace All), CSV activity export
-- Basic print-to-PDF report
-- Basic diagnostics
-- PWA manifest and service worker
-
-## Important implementation limits
-- Data is stored locally in the browser using `localStorage`. It does not sync between devices and is not automatically backed up to iCloud.
-- The Stress-Rest Index is explicitly experimental. The initial heuristic is a transparent placeholder for data collection and validation, not a medically validated or calibrated model. The app's initial default value before enough personal data exists is an illustrative baseline, not a measured truth.
-- PDF Dienstplan text extraction is not implemented in this offline starter. You can add events manually; a production parser still needs to be integrated and tested against real Dienstplan PDFs.
-- Automatic Sunday 19:30 push notifications are not implemented. Reliable push while the app is closed requires a push service/backend and user permission; GitHub Pages alone cannot deliver scheduled push.
-- PDF reports use the browser print dialog; a dedicated designed PDF renderer and report archive are future implementation work.
-- Face ID and iCloud backup require a native iOS implementation.
-- This is a functional first implementation, not yet a production-audited app. Test backup/restore before storing important records.
-
-## Index model
-See `INDEX-MODEL.md` for the provisional calculation, assumptions, and validation plan.
+## Notes
+The Stress-Rest Index is an experimental heuristic, not a medically validated measure. iCloud sync, Face ID, push notifications and automated Dienstplan PDF extraction are not implemented.
