@@ -1,8 +1,11 @@
-# v4
-- Simplified Dashboard with semi-circular Stress-Rest gauge and integrated Advice.
-- Added separate Morning and Evening Check-in shortcuts.
-- Removed visible Weekly Check-in and Lifestyle Log / Coffee tracking.
-- Added collapsed menu groups and permanent Home navigation.
-- Reworked Practice Planning around a weekly view, saved decision and actual activity pulled from logs.
-- Simplified Performance Mode focus.
-- Kept existing local storage key and legacy data schema for compatibility.
+# v5
+- Stress-Rest score moved inside the semicircular gauge.
+- Gauge now uses a red-to-green gradient.
+- Removed the experimental estimate disclaimer under the index.
+- Removed Preferences card.
+- Recolored gold accents to a midnight blue / teal palette.
+- Calendar days now use color states based on that day's index.
+- Enlarged Add Activity back navigation.
+- Replaced rectangular logo image with integrated LIBRA Lab header lockup.
+- Added LIBRA Lab iPhone home-screen title and embedded app icon.
+- Retained local data key.
