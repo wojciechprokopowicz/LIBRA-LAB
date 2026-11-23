@@ -345,6 +345,68 @@ input[type="range"]{width:100%;accent-color:#43d2c5;min-height:30px;touch-action
 #practice input,#practice select,#practice textarea,#morning input,#morning select,#evening input,#evening select{font-size:16px!important}
 #practice textarea,#evening textarea{font-size:16px!important}
 
+
+/* v14 visual and navigation refinement */
+.header{height:82px;margin:0 0 12px}
+.brand-image-wrap{height:82px!important;padding:4px 58px 4px 58px!important;justify-content:center!important}
+.brand-image{width:min(148px,100%)!important;height:auto!important;max-height:68px!important;object-fit:contain!important}
+.header:before{width:190px;height:70px}
+.header-btn.menu-right{top:18px;width:42px;height:42px}
+.overview{overflow:hidden}
+.overview-content{display:none}
+.overview.open .overview-content{display:block;padding:4px 16px 14px}
+.overview-toggle{width:100%;min-height:58px;display:flex;align-items:center;justify-content:space-between;background:transparent;border:0;color:var(--text);font-size:16px;text-align:left}
+.overview.open .overview-content .metric{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid var(--line);font-size:12px}
+.overview.open .overview-content .metric b{text-align:right;color:#eaf5f7}
+.progress-card{margin-top:12px;padding:18px 16px;background:linear-gradient(155deg,#071a2b,#04111f);border:1px solid rgba(63,137,161,.24)}
+.progress-heading h2{font-size:18px;margin:0 0 12px}
+.progress-period{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:14px;padding:4px;border-radius:13px;background:rgba(1,9,18,.55);border:1px solid rgba(73,127,153,.18)}
+.progress-period button{border:1px solid transparent;border-radius:10px;background:transparent;color:#9db1c2;padding:10px 8px;font-size:13px}
+.progress-period button.active{background:linear-gradient(135deg,#124052,#0d3443);border-color:rgba(53,224,207,.35);color:#eaffff}
+.progress-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.progress-stat{border-radius:13px;padding:12px;background:#0b1d2e;border:1px solid rgba(78,130,157,.13);display:flex;flex-direction:column;gap:5px}
+.progress-stat strong{font-size:28px;color:#f0f7fa}
+.progress-stat span{font-size:11px;color:#9db1c2;line-height:1.4}
+.progress-chart-title{font-size:13px;font-weight:600;color:#d9e7ed;margin-bottom:8px}
+.progress-chart{min-height:150px;display:flex;align-items:stretch;gap:4px;padding:5px 0 0}
+.progress-day{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:5px;padding:0 1px 2px;background:transparent;border:0;color:#a9bdcb}
+.progress-value{font-size:10px;color:#b5c7d3}
+.progress-bar-wrap{height:105px;width:100%;display:flex;align-items:flex-end;justify-content:center;border-bottom:1px solid rgba(107,145,167,.22)}
+.progress-bar{display:block;width:min(100%,25px);min-height:5px;border-radius:6px 6px 3px 3px}
+.progress-bar.stress{background:linear-gradient(180deg,#d97883,#8d4358)}
+.progress-bar.middle{background:linear-gradient(180deg,#b99b70,#756044)}
+.progress-bar.recovery{background:linear-gradient(180deg,#4bc6b6,#206e79)}
+.progress-date{font-size:9px;white-space:nowrap;color:#8fa5b6}
+.progress-day.selected{background:rgba(42,180,177,.10);outline:1px solid rgba(53,224,207,.28);border-radius:8px}
+.progress-empty{width:100%;min-height:120px;display:flex;align-items:center;justify-content:center;text-align:center;color:#9db1c2;font-size:12px}
+.progress-footnote{font-size:10px;color:#8198aa;margin:10px 0 0}
+.daygrid{grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;margin-top:12px}
+.day{min-height:78px;padding:7px 5px 6px;border-radius:12px;background:linear-gradient(145deg,#0a2031,#071726);border:1px solid rgba(89,143,165,.28);color:#e6f0f5;font-size:12px;display:flex;flex-direction:column;align-items:flex-start;gap:5px;overflow:hidden;text-align:left}
+.day-number{font-size:13px;font-weight:650;color:#edf5f8}
+.day-events{display:flex;flex-direction:column;gap:3px;width:100%;overflow:hidden}
+.day-event-chip{display:block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;border-radius:4px;padding:2px 3px;font-size:8px;line-height:1.25;text-align:left}
+.day-event-chip.practice{background:rgba(63,194,177,.18);color:#80dfd0}
+.day-event-chip.event{background:rgba(109,157,198,.2);color:#b7d3eb}
+.day-event-chip.concert{background:rgba(185,150,100,.22);color:#e0c18d}
+.day.selected{background:linear-gradient(145deg,#103d4a,#0a2637);border:2px solid #45cbbd;color:#fff;box-shadow:0 0 0 2px rgba(69,203,189,.15)}
+.day.selected .day-number{color:#fff}
+.day-more{font-size:8px;color:#a9bdcb}
+.day-empty{min-height:78px}
+.weekday{font-size:10px;color:#8fa5b6;padding:4px 0;text-align:center}
+#calendarEvents{margin-top:14px;padding-top:14px;border-top:1px solid rgba(89,143,165,.22)}
+.calendar-agenda-row{display:flex;gap:10px;padding:10px 2px;border-bottom:1px solid rgba(89,143,165,.14)}
+.agenda-copy{display:flex;flex-direction:column;gap:4px}
+.agenda-copy strong{font-size:13px;color:#eaf2f6}
+.agenda-copy span,.agenda-copy small{font-size:11px;color:#9db1c2}
+body.performance-active #performance .topline{margin-bottom:3vh!important}
+body.performance-active #performance h1{font-size:0!important;line-height:1.15;text-align:center;letter-spacing:.22em}
+body.performance-active #performance h1:before{content:"PERFORMANCE";display:block;font-size:clamp(22px,6vw,29px);color:#f7f8fb}
+body.performance-active #performance h1:after{content:"MODE";display:block;font-size:clamp(20px,5vw,25px);color:#f7f8fb;margin-top:5px}
+body.performance-active #performance .orb{transform:translateY(-18px);color:#fff!important}
+body.performance-active #performance .orb *{color:#fff!important}
+body.performance-active #exitPerformance{transform:translateY(-8px)}
+@media(max-width:390px){.day{min-height:70px;padding:6px 4px}.day-event-chip{font-size:7px}.day-empty{min-height:70px}}
+
 </style>
 </head>
 <body>
@@ -363,6 +425,13 @@ input[type="range"]{width:100%;accent-color:#43d2c5;min-height:30px;touch-action
     <div class="advice compact-advice"><span class="bulb">♧</span><div><strong>Advice</strong><p id="adviceText">Keep a steady pace today and protect a proper recovery window.</p></div></div>
     
   </div>
+  <section class="card progress-card" id="progressCard">
+    <div class="progress-heading"><h2>Your Progress</h2></div>
+    <div class="progress-period"><button class="active" data-progress-days="7">7 days</button><button data-progress-days="30">30 days</button></div>
+    <div class="progress-stats"><div class="progress-stat"><strong id="progressAverage">—</strong><span>Average Stress-Rest Index</span></div><div class="progress-stat"><strong id="progressCount">0</strong><span>Days recorded</span></div></div>
+    <div class="progress-chart-title">Daily Stress-Rest Index</div><div class="progress-chart" id="progressChart"><div class="progress-empty">Record check-ins and activities to build your history.</div></div>
+    <p class="progress-footnote">Tap a day to open its history.</p>
+  </section>
   <div class="card overview open" id="overviewCard">
     <button class="overview-toggle" id="overviewToggle"><strong>Today’s Overview</strong><span id="overviewChevron">⌃</span></button>
     <div class="overview-content" id="overviewContent"></div>
@@ -539,12 +608,12 @@ input[type="range"]{width:100%;accent-color:#43d2c5;min-height:30px;touch-action
   <div class="topline"><button class="back" data-go="settings">‹ More</button><span class="eyebrow">IMPORT</span></div>
   <h1>Import CSV</h1>
   <div class="card">
-    <p class="hint">Import an activities CSV exported from LIBRA Lab. New rows are added to your existing records; existing data is not replaced.</p>
+    <p class="hint">Import a CSV from LIBRA Lab or the original Stress-Rest app. Stress-Rest history is preserved separately, including its original index and notes. Existing records are not replaced.</p>
     <div class="field"><label>Choose CSV file</label><input type="file" id="csvImportFile" accept=".csv,text/csv"></div>
     <div id="csvImportPreview" class="hint">No CSV selected.</div>
     <button class="btn primary" id="confirmCSVImport" disabled>Import Activities</button>
   </div>
-  <div class="card"><h3>Expected columns</h3><p class="hint">kind, date, type, duration, intensity, loadType, embFatigue, mentalFatigue, notes. You can use the CSV exported from Backup & Restore.</p></div>
+  <div class="card"><h3>Expected columns</h3><p class="hint">Stress-Rest CSV columns: date, subjective_checkin_0_100, sleep_hours, playing_at_work_hours, personal_practice_hours, total_playing_hours, musical_fatigue_1_5, combined_stress_rest_index_0_100, note.</p></div>
 </section>
 
 
@@ -611,12 +680,25 @@ input[type="range"]{width:100%;accent-color:#43d2c5;min-height:30px;touch-action
 const DB_KEY='libra_lab_local_v1';
 const today=()=>new Date().toLocaleDateString('en-CA');
 const dateLabel=d=>{if(!d)return '';const x=new Date(d+'T12:00:00');return x.toLocaleDateString('en-GB',{day:'2-digit',month:'2-digit',year:'numeric'})};
-const fresh=()=>({version:1,practices:[],events:[],mornings:{},evenings:{},weeklies:{},plans:{},coffee:{},notes:[],reports:[],errors:[],settings:{performanceMode:false}});
+const fresh=()=>({version:1,practices:[],events:[],mornings:{},evenings:{},weeklies:{},plans:{},coffee:{},notes:[],reports:[],errors:[],settings:{performanceMode:false},stressRestHistory:[]});
 let db=loadDB(),selectedDate=today(),calendarMonth=new Date(),pendingRestore=null,pendingConfirm=null;
 function loadDB(){try{return {...fresh(),...JSON.parse(localStorage.getItem(DB_KEY)||'{}')}}catch(e){return fresh()}}
 function saveDB(){try{localStorage.setItem(DB_KEY,JSON.stringify(db));refresh();}catch(e){toast('Save failed — your changes have not been saved.');db.errors.push({date:new Date().toISOString(),message:'Local storage save failed'});}}
 function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.style.display='block';clearTimeout(window._toastTimer);window._toastTimer=setTimeout(()=>el.style.display='none',2400)}
-function go(id){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));document.querySelectorAll('[data-nav]').forEach(b=>b.classList.toggle('active',b.dataset.nav===id||(id==='practice'&&b.dataset.nav==='practice')||(['morning','evening'].includes(id)&&b.dataset.nav==='settings')));document.body.classList.toggle('performance-active',id==='performance');window.scrollTo({top:0,behavior:'smooth'});if(id==='calendar')renderCalendar();if(id==='practice')renderPracticeToday();if(id==='insights')renderInsights();if(id==='settings')renderSettings();if(id==='dashboard')refresh();if(['morning','evening'].includes(id))setCheckinTab(id);if(id==='performance')startCueRotation();else stopCueRotation();}
+const viewHistory=[];
+function go(id,fromHistory=false){
+ const current=document.querySelector('.view.active')?.id;
+ if(!fromHistory&&current&&current!==id)viewHistory.push(current);
+ document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));document.querySelectorAll('[data-nav]').forEach(b=>b.classList.toggle('active',b.dataset.nav===id||(id==='practice'&&b.dataset.nav==='practice')||(['morning','evening'].includes(id)&&b.dataset.nav==='settings')));document.body.classList.toggle('performance-active',id==='performance');window.scrollTo({top:0,behavior:'smooth'});if(id==='calendar')renderCalendar();if(id==='practice')renderPracticeToday();if(id==='insights')renderInsights();if(id==='settings')renderSettings();if(id==='dashboard')refresh();if(['morning','evening'].includes(id))setCheckinTab(id);if(id==='performance')startCueRotation();else stopCueRotation();}
+
+document.addEventListener('click',e=>{
+ const back=e.target.closest('.back');
+ if(!back)return;
+ e.preventDefault();e.stopImmediatePropagation();
+ const previous=viewHistory.pop();
+ if(previous)go(previous,true);else go('dashboard',true);
+},true);
+
 document.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b)go(b.dataset.go);const n=e.target.closest('[data-nav]');if(n)go(n.dataset.nav);});
 document.querySelectorAll('[data-nav]').forEach(b=>b.addEventListener('click',()=>{const id=b.dataset.nav;if(id==='practice')go('practice');else go(id)}));
 document.addEventListener('click',e=>{const t=e.target.closest('[data-checkin]');if(t)go(t.dataset.checkin)});
@@ -656,12 +738,43 @@ function calcIndex(date){
   return {value,known,good:whyGood,bad:whyBad,advice};
 }
 function latestIndex(date=today()){const d=calcIndex(date);return d}
+
+let progressDays=7;
+function progressRecordedDates(){
+ return [...new Set([...Object.keys(db.mornings),...Object.keys(db.evenings),...db.practices.map(x=>x.date),...db.events.map(x=>x.date),(db.stressRestHistory||[]).map(x=>x.date)])]
+  .filter(d=>/^\d{4}-\d{2}-\d{2}$/.test(d)).sort();
+}
+function renderProgress(){
+ const end=today(),start=addDays(end,-(progressDays-1));
+ const dates=progressRecordedDates().filter(d=>d>=start&&d<=end);
+ const imported=new Map((db.stressRestHistory||[]).map(x=>[x.date,x]));
+ const values=dates.map(d=>({date:d,value:imported.has(d)?imported.get(d).index:calcIndex(d).value,source:imported.has(d)?'Stress-Rest':'LIBRA Lab'}));
+ document.getElementById('progressAverage').textContent=values.length?Math.round(values.reduce((s,x)=>s+x.value,0)/values.length):'—';
+ document.getElementById('progressCount').textContent=values.length;
+ const chart=document.getElementById('progressChart');
+ if(!values.length){chart.innerHTML='<div class="progress-empty">No recorded days in this period yet.</div>';return;}
+ chart.innerHTML=values.map(x=>{
+  const tone=x.value<45?'stress':x.value<65?'middle':'recovery';
+  const label=new Date(x.date+'T12:00:00').toLocaleDateString('en-GB',{day:'2-digit',month:'2-digit'});
+  return `<button class="progress-day" data-progress-date="${x.date}" aria-label="${dateLabel(x.date)}, ${x.source} index ${x.value}"><span class="progress-value">${x.value}</span><span class="progress-bar-wrap"><i class="progress-bar ${tone}" style="height:${Math.max(7,x.value)}%"></i></span><span class="progress-date">${label}</span></button>`;
+ }).join('');
+}
+document.querySelectorAll('[data-progress-days]').forEach(btn=>btn.addEventListener('click',()=>{
+ progressDays=Number(btn.dataset.progressDays);
+ document.querySelectorAll('[data-progress-days]').forEach(b=>b.classList.toggle('active',b===btn));
+ renderProgress();
+}));
+document.getElementById('progressChart').addEventListener('click',e=>{
+ const b=e.target.closest('[data-progress-date]');if(b)renderFullDay(b.dataset.progressDate);
+});
+
 function refresh(){
   const d=latestIndex();document.getElementById('indexValue').textContent=d.value;const g=document.getElementById('indexGauge');if(g)g.style.strokeDashoffset=414-(414*d.value/100);document.getElementById('adviceText').textContent=d.advice;
   
   const r=dayRecord(today()),tot=dayLoad(today());document.getElementById('todayLabel').textContent=dateLabel(today());document.getElementById('todayPractice').textContent=tot.practice+' min';document.getElementById('todayWork').textContent=tot.work+' min';document.getElementById('todayCheckin').textContent=(r.morning?'Morning ':'')+(r.evening?'Evening':'')||'Not completed';
   const overview=document.getElementById('overviewContent');const rows=[['Sleep',r.morning?.sleepDuration||'Not completed'],['Morning Condition',r.morning?.feeling||'Not completed'],['Embouchure',r.morning?`${r.morning.embouchure}/5`:'Not completed'],['Practice',tot.practice?tot.practice+' min':'No entries'],['Rehearsals & Concerts',tot.work?tot.work+' min':'No entries'],['Evening Check-in',r.evening?'Completed':'Not completed']];
   overview.innerHTML=rows.map(([a,b])=>`<div class="metric"><span>${a}</span><b>${b}</b></div>`).join('');
+  renderProgress();
   renderSettings();
 }
 document.getElementById('overviewToggle').addEventListener('click',()=>{const el=document.getElementById('overviewCard');el.classList.toggle('open');document.getElementById('overviewChevron').textContent=el.classList.contains('open')?'⌃':'⌄'});
@@ -683,7 +796,8 @@ document.getElementById('savePlan').addEventListener('click',()=>{db.plans[today
 function calendarCellItems(date){
  const events=dateEntries(date).map(e=>({label:e.type||'Event',kind:/concert/i.test(e.type)?'concert':'event'}));
  const practices=db.practices.filter(p=>p.date===date).map(p=>({label:p.category||'Practice',kind:'practice'}));
- return [...events,...practices].slice(0,2);
+ const legacy=(db.stressRestHistory||[]).filter(x=>x.date===date).map(x=>({label:`Stress-Rest ${x.index}`,kind:'checkin'}));
+ return [...legacy,...events,...practices].slice(0,2);
 }
 function renderCalendar(){
  const y=calendarMonth.getFullYear(),m=calendarMonth.getMonth();
@@ -709,7 +823,9 @@ document.getElementById('calendarGrid').addEventListener('click',e=>{const b=e.t
 function renderCalendarEvents(){
  const box=document.getElementById('calendarEvents');
  const r=dayRecord(selectedDate);
+ const imported=(db.stressRestHistory||[]).find(x=>x.date===selectedDate);
  const rows=[
+  ...(imported?[{title:'Imported Stress-Rest history',meta:`Original index ${imported.index}/100 · Sleep ${imported.sleep} h`,detail:`Work playing ${imported.work} h · Personal practice ${imported.practice} h · Musical fatigue ${imported.fatigue??'—'}/5${imported.note?' · '+imported.note:''}`,kind:'checkin'}]:[]),
   ...r.events.map(e=>({title:e.type||'Event',meta:`${e.start||''}${e.end?' – '+e.end:''}`,detail:e.notes||e.location||'',kind:/concert/i.test(e.type)?'concert':'event'})),
   ...r.practice.map(p=>({title:p.category||'Practice',meta:`${p.duration} min · ${p.intensity||'Moderate'}`,detail:p.notes||`Embouchure ${p.embFatigue??'—'}/5 · Mental ${p.mentalFatigue??'—'}/5`,kind:'practice'}))
  ];
@@ -729,8 +845,8 @@ function renderCalendarEvents(){
  if(full)full.onclick=()=>renderFullDay(selectedDate);
 }
 document.getElementById('addCalendarEventTop').onclick=()=>{document.getElementById('eventDate').value=selectedDate;go('event')};
-function renderFullDay(date){go('fullday');document.getElementById('fullDayTitle').textContent='Full Day · '+dateLabel(date);const r=dayRecord(date),tot=dayLoad(date);const sections=[['Sleep',r.morning?.sleepDuration||'Not completed'],['Morning Check-in',r.morning?`${r.morning.feeling} · Embouchure ${r.morning.embouchure}/5`:'Not completed'],['Practice',r.practice.length?r.practice.map(x=>`${x.category} · ${x.duration} min`).join('<br>'):'No entries'],['Rehearsals & Concerts',r.events.length?r.events.map(x=>`${x.type} · ${x.start}–${x.end}`).join('<br>'):'No entries'],['Evening Check-in',r.evening?`${r.evening.feeling} · Travel ${r.evening.travel}`:'Not completed'],['Lifestyle',`${r.coffee.length} coffee(s)`],['Stress-Rest Index',String(calcIndex(date).value)]];document.getElementById('fullDayContent').innerHTML=sections.map(([a,b])=>`<div class="card"><div class="row"><h3>${a}</h3><span class="small muted">${b}</span></div></div>`).join('')+`<div class="card"><div class="metric"><span>Total Practice Time</span><b>${tot.practice} min</b></div><div class="metric"><span>Total Rehearsal & Concert Time</span><b>${tot.work} min</b></div><div class="metric"><span>Daily Stress-Rest Index</span><b>${calcIndex(date).value}</b></div></div>`}
-function renderInsights(){const dates=[...new Set([...Object.keys(db.mornings),...Object.keys(db.evenings),...db.practices.map(x=>x.date),...db.events.map(x=>x.date)])].sort().slice(-7);const vals=dates.map(d=>calcIndex(d).value);const avg=vals.length?Math.round(vals.reduce((a,b)=>a+b,0)/vals.length):null;document.getElementById('averageIndex').textContent=avg??'—';document.getElementById('indexChart').innerHTML=vals.length?vals.map(v=>`<i style="height:${Math.max(8,v)}%"></i>`).join(''):'<span class="hint">No recorded data yet.</span>';document.getElementById('insightSummary').textContent=vals.length?`Based on ${vals.length} recorded day(s). This is an experimental estimate, not a clinical measurement.`:'Insights will become more meaningful as you record data.';const p=db.practices;document.getElementById('insEmb').textContent=p.length?`Avg ${ (p.reduce((a,x)=>a+x.embFatigue,0)/p.length).toFixed(1)}/5`:'Not enough data';document.getElementById('insMental').textContent=p.length?`Avg ${ (p.reduce((a,x)=>a+x.mentalFatigue,0)/p.length).toFixed(1)}/5`:'Not enough data';document.getElementById('insSleep').textContent=Object.keys(db.mornings).length+' check-in(s)';document.getElementById('insLoad').textContent=(db.practices.length+db.events.length)+' logged activities'}
+function renderFullDay(date){go('fullday');document.getElementById('fullDayTitle').textContent='Full Day · '+dateLabel(date);const r=dayRecord(date),tot=dayLoad(date),legacy=(db.stressRestHistory||[]).find(x=>x.date===date);const sections=[...(legacy?[['Imported Stress-Rest Index',`${legacy.index}/100`],['Subjective Check-in',`${legacy.subjective}/100`],['Sleep',`${legacy.sleep} h`],['Playing at Work',`${legacy.work} h`],['Personal Practice',`${legacy.practice} h`],['Musical Fatigue',legacy.fatigue===null?'Not recorded':`${legacy.fatigue}/5`],['Original Note',legacy.note||'No note']]:[]),['Sleep',r.morning?.sleepDuration||'Not completed'],['Morning Check-in',r.morning?`${r.morning.feeling} · Embouchure ${r.morning.embouchure}/5`:'Not completed'],['Practice',r.practice.length?r.practice.map(x=>`${x.category} · ${x.duration} min`).join('<br>'):'No entries'],['Rehearsals & Concerts',r.events.length?r.events.map(x=>`${x.type} · ${x.start}–${x.end}`).join('<br>'):'No entries'],['Evening Check-in',r.evening?`${r.evening.feeling} · Travel ${r.evening.travel}`:'Not completed'],['Lifestyle',`${r.coffee.length} coffee(s)`],['Stress-Rest Index',String(calcIndex(date).value)]];document.getElementById('fullDayContent').innerHTML=sections.map(([a,b])=>`<div class="card"><div class="row"><h3>${a}</h3><span class="small muted">${b}</span></div></div>`).join('')+`<div class="card"><div class="metric"><span>Total Practice Time</span><b>${tot.practice} min</b></div><div class="metric"><span>Total Rehearsal & Concert Time</span><b>${tot.work} min</b></div><div class="metric"><span>Daily Stress-Rest Index</span><b>${calcIndex(date).value}</b></div></div>`}
+function renderInsights(){const dates=[...new Set([...Object.keys(db.mornings),...Object.keys(db.evenings),...db.practices.map(x=>x.date),...db.events.map(x=>x.date),(db.stressRestHistory||[]).map(x=>x.date)])].sort().slice(-7);const legacyMap=new Map((db.stressRestHistory||[]).map(x=>[x.date,x.index]));const vals=dates.map(d=>legacyMap.has(d)?legacyMap.get(d):calcIndex(d).value);const avg=vals.length?Math.round(vals.reduce((a,b)=>a+b,0)/vals.length):null;document.getElementById('averageIndex').textContent=avg??'—';document.getElementById('indexChart').innerHTML=vals.length?vals.map(v=>`<i style="height:${Math.max(8,v)}%"></i>`).join(''):'<span class="hint">No recorded data yet.</span>';document.getElementById('insightSummary').textContent=vals.length?`Based on ${vals.length} recorded day(s). This is an experimental estimate, not a clinical measurement.`:'Insights will become more meaningful as you record data.';const p=db.practices;document.getElementById('insEmb').textContent=p.length?`Avg ${ (p.reduce((a,x)=>a+x.embFatigue,0)/p.length).toFixed(1)}/5`:'Not enough data';document.getElementById('insMental').textContent=p.length?`Avg ${ (p.reduce((a,x)=>a+x.mentalFatigue,0)/p.length).toFixed(1)}/5`:'Not enough data';document.getElementById('insSleep').textContent=Object.keys(db.mornings).length+' check-in(s)';document.getElementById('insLoad').textContent=(db.practices.length+db.events.length)+' logged activities'}
 document.getElementById('searchInput').addEventListener('input',e=>{const q=e.target.value.toLowerCase();const entries=[...db.practices.map(x=>({...x,kind:'Practice',text:`${x.category} ${x.notes||''}`})),...db.events.map(x=>({...x,kind:x.type,text:`${x.type} ${x.notes||''}`}))].filter(x=>`${x.kind} ${x.text} ${x.date}`.toLowerCase().includes(q));document.getElementById('searchResults').innerHTML=q?(entries.length?entries.map(x=>`<div class="metric"><span>${x.kind} · ${dateLabel(x.date)} · ${x.text}</span><b>${x.duration} min</b></div>`).join(''):'No results found. Try a different search.'):'Search your saved entries.'});
 document.getElementById('manualImportEvent').onclick=()=>{document.getElementById('eventDate').value=selectedDate;go('event')};
 document.getElementById('exportBackup').onclick=()=>download('LIBRA-Lab_Full-Backup_'+today()+'.json',JSON.stringify(db,null,2),'application/json');
@@ -760,21 +876,57 @@ function parseCSV(text){
  row.push(cell);if(row.some(v=>v.trim()!==''))rows.push(row);
  return rows;
 }
+
+let pendingStressRestRows=[];
 document.getElementById('csvImportFile').addEventListener('change',async e=>{
- const file=e.target.files[0];pendingCSVRows=[];
+ const file=e.target.files[0];pendingCSVRows=[];pendingStressRestRows=[];
  const preview=document.getElementById('csvImportPreview'),button=document.getElementById('confirmCSVImport');
  button.disabled=true;if(!file){preview.textContent='No CSV selected.';return}
  try{
-  const parsed=parseCSV(await file.text());const headers=parsed.shift().map(x=>x.trim().toLowerCase());
+  const parsed=parseCSV(await file.text());if(!parsed.length)throw new Error('Empty CSV');
+  const headers=parsed.shift().map(x=>x.trim().toLowerCase());
   const idx=name=>headers.indexOf(name.toLowerCase());
-  if(idx('kind')<0||idx('date')<0||idx('type')<0)throw new Error('Missing required columns');
+  const stressColumns=['date','subjective_checkin_0_100','sleep_hours','playing_at_work_hours','personal_practice_hours','total_playing_hours','musical_fatigue_1_5','combined_stress_rest_index_0_100','note'];
+  const isStressRest=stressColumns.every(name=>idx(name)>=0);
+  if(isStressRest){
+   pendingStressRestRows=parsed.map(r=>({
+    date:(r[idx('date')]||'').trim(),
+    subjective:Number(r[idx('subjective_checkin_0_100')]),
+    sleep:Number(r[idx('sleep_hours')]),
+    work:Number(r[idx('playing_at_work_hours')]),
+    practice:Number(r[idx('personal_practice_hours')]),
+    total:Number(r[idx('total_playing_hours')]),
+    fatigue:(r[idx('musical_fatigue_1_5')]||'').trim()===''?null:Number(r[idx('musical_fatigue_1_5')]),
+    index:Number(r[idx('combined_stress_rest_index_0_100')]),
+    note:r[idx('note')]||''
+   })).filter(x=>/^\d{4}-\d{2}-\d{2}$/.test(x.date)&&Number.isFinite(x.index)&&x.index>=0&&x.index<=100);
+   const existing=new Set((db.stressRestHistory||[]).map(x=>x.date));
+   const duplicates=pendingStressRestRows.filter(x=>existing.has(x.date)).length;
+   preview.innerHTML=`<strong>Stress-Rest CSV detected.</strong><br>${pendingStressRestRows.length} valid daily records found.<br>${duplicates} dates already exist in the imported Stress-Rest history and will be updated; LIBRA Lab check-ins, practice and calendar entries will remain untouched.<br><br>Data includes sleep, work playing hours, personal practice, musical fatigue, original Stress-Rest Index and notes.`;
+   button.textContent='Import Stress-Rest History';
+   button.disabled=pendingStressRestRows.length===0;
+   return;
+  }
+  if(idx('kind')<0||idx('date')<0||idx('type')<0)throw new Error('Unknown CSV structure');
   pendingCSVRows=parsed.map(r=>({kind:(r[idx('kind')]||'').trim().toLowerCase(),date:(r[idx('date')]||'').trim(),type:(r[idx('type')]||'').trim(),duration:Number(r[idx('duration')]||0),intensity:r[idx('intensity')]||'Moderate',loadType:r[idx('loadtype')]||'Both',embFatigue:Number(r[idx('embfatigue')]||3),mentalFatigue:Number(r[idx('mentalfatigue')]||3),notes:r[idx('notes')]||''}))
-   .filter(x=>/^\\d{4}-\\d{2}-\\d{2}$/.test(x.date)&&['practice','event'].includes(x.kind)&&x.type);
-  preview.textContent=`Preview: ${pendingCSVRows.filter(x=>x.kind==='practice').length} practice entries and ${pendingCSVRows.filter(x=>x.kind==='event').length} calendar events. These will be added to your existing data.`;
-  button.disabled=pendingCSVRows.length===0;
- }catch(err){preview.textContent='This CSV format is not recognized. Use the LIBRA Lab Activities CSV export.';toast('Could not read CSV file.')}
+   .filter(x=>/^\d{4}-\d{2}-\d{2}$/.test(x.date)&&['practice','event'].includes(x.kind)&&x.type);
+  preview.textContent=`LIBRA Lab activity CSV detected: ${pendingCSVRows.filter(x=>x.kind==='practice').length} practice entries and ${pendingCSVRows.filter(x=>x.kind==='event').length} calendar events. These will be added to your existing data.`;
+  button.textContent='Import Activities';button.disabled=pendingCSVRows.length===0;
+ }catch(err){preview.textContent='CSV format not recognized. Select a Stress-Rest export or LIBRA Lab Activities CSV.';button.disabled=true;toast('Could not read CSV file.')}
 });
 document.getElementById('confirmCSVImport').onclick=()=>{
+ if(pendingStressRestRows.length){
+  const byDate=new Map((db.stressRestHistory||[]).map(x=>[x.date,x]));
+  pendingStressRestRows.forEach(x=>byDate.set(x.date,{...x,source:'Stress-Rest',importedAt:new Date().toISOString()}));
+  db.stressRestHistory=[...byDate.values()].sort((a,b)=>a.date.localeCompare(b.date));
+  const count=pendingStressRestRows.length;
+  pendingStressRestRows=[];saveDB();
+  document.getElementById('csvImportFile').value='';
+  document.getElementById('csvImportPreview').textContent=`Imported ${count} Stress-Rest daily records.`;
+  document.getElementById('confirmCSVImport').disabled=true;
+  document.getElementById('confirmCSVImport').textContent='Import Activities';
+  toast('Stress-Rest history imported.');go('dashboard');return;
+ }
  if(!pendingCSVRows.length)return;
  const practices=pendingCSVRows.filter(x=>x.kind==='practice').map(x=>({id:crypto.randomUUID(),date:x.date,category:x.type,duration:x.duration,intensity:x.intensity,loadType:x.loadType,embFatigue:x.embFatigue,mentalFatigue:x.mentalFatigue,notes:x.notes}));
  const events=pendingCSVRows.filter(x=>x.kind==='event').map(x=>({id:crypto.randomUUID(),date:x.date,type:x.type,duration:x.duration,intensity:x.intensity,loadType:x.loadType,embFatigue:x.embFatigue,mentalFatigue:x.mentalFatigue,notes:x.notes}));

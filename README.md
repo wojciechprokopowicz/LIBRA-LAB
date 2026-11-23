@@ -1,18 +1,14 @@
-# LIBRA Lab v13 — Check-ins & Practice Log
+# LIBRA Lab v15
 
-Flat upload package: six files in repository root, no assets folder.
+Upload all six files in this ZIP to the root of the LIBRA-LAB GitHub repository (main / root).
 
-## Changes
-- Morning Check-in now records exact sleep duration from 3 to 12 hours in 30-minute increments.
-- Evening Check-in now uses a 1–5 slider with clear condition labels and descriptions.
-- Removed Physical Activity and Activity Type from Evening Check-in.
-- Nap has an optional duration field; Travel remains a Yes/No context field and does not directly change the index.
-- Index now reads exact sleep minutes while remaining compatible with older saved sleep-duration labels.
-- Evening condition contributes proportionally using the 1–5 rating.
-- Practice Log stays open after saving a session.
-- Added a save confirmation and Today's Practice list with total duration and fatigue ratings.
-- Form controls use 16px text to prevent iOS Safari automatic input zoom.
-- Existing local database key is unchanged.
+## Import Stress-Rest history
+1. Open More → Import → CSV.
+2. Select `stress-rest-check-ins.csv` exported from the original Stress-Rest app.
+3. Check the preview, then choose **Import Stress-Rest History**.
+4. Imported original scores and fields are stored separately from LIBRA Lab check-ins. They do not overwrite existing LIBRA Lab data.
+5. The imported daily index appears in Dashboard → Your Progress and in Calendar / Full Day history.
 
-## Install
-Back up your records first. Replace the six files in the root of `LIBRA-LAB` on branch `main`. Keep Pages on `main` / root. Open once with `?v=13`.
+The existing LIBRA Lab Activities CSV format is still supported.
+
+Before replacing files, export a LIBRA Lab backup. After upload, open the app with `?v=15`. Do not clear Safari website data.

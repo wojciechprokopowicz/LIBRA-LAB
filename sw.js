@@ -1,4 +1,4 @@
-const CACHE='libra-lab-v13-checkins-practice-cache';
+const CACHE='libra-lab-v15-stressrest-import-cache';
 const CORE=['./','./index.html','./manifest.webmanifest'];
 
 self.addEventListener('install', event => {

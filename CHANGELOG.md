@@ -1,9 +1,7 @@
-# v13
-- Exact sleep duration slider (30-minute increments).
-- Evening overall condition slider with descriptive labels.
-- Removed Physical Activity from evening form; nap duration and travel context retained.
-- Index reads exact sleep duration and evening condition scale.
-- Practice save no longer navigates away; adds visible saved-session feedback and today's session list.
-- iOS form controls set to 16px to prevent automatic zoom.
-- Preserved local database key and old sleep record compatibility.
-- Bumped service-worker cache.
+# v15
+- Added native import support for the original Stress-Rest check-ins CSV.
+- Detects the nine-column Stress-Rest export, validates dates and original index values, previews rows, and imports without replacing LIBRA Lab records.
+- Stores imported history separately to preserve original scores, subjective check-ins, sleep, work/practice hours, musical fatigue and notes.
+- Imported original index values appear in Dashboard Progress, Insights averages and Calendar/Full Day history.
+- Existing LIBRA Lab Activities CSV import remains supported.
+- Service-worker cache bumped.
