@@ -1,10 +1,11 @@
-# LIBRA Lab v16
+# LIBRA Lab v17
 
-Upload all six files in this ZIP to the root of the LIBRA-LAB GitHub repository (main / root).
+Replace all six root files in the LIBRA-LAB GitHub repository (main / root).
 
-Changes:
-- Performance Mode exit button centered horizontally and given a symmetric circular hit target.
-- Calendar redesigned to match the supplied reference: compact square date tiles, color-coded recorded days, neutral unrecorded days, selected-day outline and recovery legend.
-- Imported Stress-Rest original index determines historical calendar color: below 45 red (recovery needed), 45–64 amber (moderate), 65+ green (good recovery). These are display bands, not clinical thresholds.
+v17 fixes:
+- Performance Mode exit button has a visible × and is centered.
+- Calendar uses a stable 7-column grid; all date cells have equal square dimensions.
+- Dates without records remain dark and neutral. Imported Stress-Rest index days retain red/amber/green color bands.
+- Selected date keeps its day number visible.
 
-Before replacing files, export a LIBRA Lab backup. After upload open the app with `?v=16`. Do not clear Safari website data.
+Before replacing files, export a LIBRA Lab backup. After upload, open the app with `?v=17`. Do not clear Safari website data.

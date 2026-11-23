@@ -408,94 +408,102 @@ body.performance-active #exitPerformance{transform:translateY(-8px)}
 @media(max-width:390px){.day{min-height:70px;padding:6px 4px}.day-event-chip{font-size:7px}.day-empty{min-height:70px}}
 
 
-/* v16 — compact recovery calendar and precisely centered exit control */
-body.performance-active #performance .card.performance{align-items:center!important}
-body.performance-active #exitPerformance{
-  position:relative!important;
-  display:flex!important;
-  align-items:center!important;
-  justify-content:center!important;
-  align-self:center!important;
-  left:50%!important;
-  transform:translateX(-50%)!important;
-  width:96px!important;
-  min-width:96px!important;
-  height:96px!important;
-  min-height:96px!important;
-  padding:0!important;
-  margin:0 auto!important;
-  border-radius:50%!important;
-  font-size:0!important;
-  line-height:1!important;
+
+/* v17 — stable square calendar cells and visible centered exit glyph */
+body.performance-active #performance .card.performance{
+ display:flex!important;flex-direction:column!important;align-items:center!important;
 }
-body.performance-active #exitPerformance::first-letter{font-size:32px}
-body.performance-active #exitPerformance{color:#fff!important}
+body.performance-active #exitPerformance{
+ position:relative!important;left:auto!important;right:auto!important;bottom:auto!important;
+ align-self:center!important;transform:none!important;
+ display:flex!important;align-items:center!important;justify-content:center!important;
+ width:76px!important;height:76px!important;min-width:76px!important;min-height:76px!important;
+ margin:0 auto!important;padding:0!important;border-radius:50%!important;
+ font-family:Arial,sans-serif!important;font-size:36px!important;font-weight:300!important;
+ line-height:1!important;color:#fff!important;opacity:1!important;
+}
+body.performance-active #exitPerformance::before,
+body.performance-active #exitPerformance::after{content:none!important}
 #calendarGrid.daygrid{
  display:grid!important;
  grid-template-columns:repeat(7,minmax(0,1fr))!important;
+ grid-auto-rows: minmax(0,1fr)!important;
  gap:7px!important;
- margin-top:14px!important;
- align-items:stretch;
+ align-items:stretch!important;
+ width:100%!important;
 }
 #calendarGrid .weekday{
- padding:4px 0 8px!important;
- font-size:11px!important;
- font-weight:500;
- color:#8fa2b5!important;
- text-align:center!important;
+ display:flex!important;align-items:center!important;justify-content:center!important;
+ min-width:0!important;padding:4px 0 8px!important;
+ font-size:11px!important;color:#91a5b8!important;
 }
-#calendarGrid .day-empty{aspect-ratio:1/1;min-height:0!important}
-#calendarGrid .day{
- aspect-ratio:1/1!important;
- min-height:0!important;
- height:auto!important;
- padding:8px 5px 5px!important;
- border-radius:13px!important;
- display:flex!important;
- flex-direction:column!important;
- align-items:center!important;
- justify-content:flex-start!important;
- gap:3px!important;
- overflow:hidden!important;
- text-align:center!important;
- background:#091321!important;
- border:1px solid rgba(100,127,151,.12)!important;
- color:#91a1b5!important;
+#calendarGrid .day-empty{
+ display:block!important;width:100%!important;height:auto!important;
+ min-height:0!important;aspect-ratio:1/1!important;
+}
+#calendarGrid button.day{
+ box-sizing:border-box!important;
+ display:flex!important;flex-direction:column!important;
+ align-items:center!important;justify-content:flex-start!important;
+ width:100%!important;height:auto!important;min-width:0!important;
+ min-height:0!important;aspect-ratio:1/1!important;
+ padding:8px 3px 5px!important;margin:0!important;
+ border-radius:13px!important;border:1px solid rgba(100,127,151,.16)!important;
+ overflow:hidden!important;text-align:center!important;
+ background:#091321!important;color:#91a1b5!important;
  box-shadow:none!important;
 }
-#calendarGrid .day-number{font-size:13px!important;font-weight:650!important;color:inherit!important;align-self:center}
-#calendarGrid .day-score{font-size:10px;font-weight:700;line-height:1.2;color:rgba(4,20,30,.85)}
-#calendarGrid .day.calendar-no-data{background:#091321!important;color:#8091a7!important;border-color:rgba(100,127,151,.12)!important}
-#calendarGrid .day.calendar-stress{background:#e47783!important;color:#071522!important;border-color:#e47783!important}
-#calendarGrid .day.calendar-moderate{background:#d9ad70!important;color:#071522!important;border-color:#d9ad70!important}
-#calendarGrid .day.calendar-recovery{background:#69c3a0!important;color:#071522!important;border-color:#69c3a0!important}
-#calendarGrid .day.selected{
- outline:3px solid #e6edf4!important;
- outline-offset:2px!important;
- border-color:#071522!important;
- box-shadow:0 0 0 5px rgba(88,195,184,.25)!important;
+#calendarGrid button.day .day-number{
+ display:block!important;position:static!important;
+ width:auto!important;height:auto!important;min-height:0!important;
+ margin:0 auto!important;padding:0!important;
+ font-size:13px!important;line-height:1.25!important;font-weight:650!important;
+ color:inherit!important;opacity:1!important;visibility:visible!important;
 }
-#calendarGrid .day.selected .day-number{color:#061522!important}
-#calendarGrid .day-events{width:100%;display:flex;flex-direction:column;align-items:center;gap:2px;overflow:hidden}
-#calendarGrid .day-event-chip{font-size:7px!important;max-width:100%;padding:1px 2px!important;line-height:1.15!important;background:rgba(4,23,34,.16)!important;color:#08202b!important}
+#calendarGrid button.day .day-score{
+ display:block!important;font-size:10px!important;line-height:1.2!important;
+ font-weight:700!important;color:rgba(4,20,30,.86)!important;
+}
+#calendarGrid button.day.calendar-no-data{
+ background:#091321!important;color:#91a1b5!important;
+ border-color:rgba(100,127,151,.16)!important;
+}
+#calendarGrid button.day.calendar-stress{
+ background:#e47783!important;color:#071522!important;border-color:#e47783!important;
+}
+#calendarGrid button.day.calendar-moderate{
+ background:#d9ad70!important;color:#071522!important;border-color:#d9ad70!important;
+}
+#calendarGrid button.day.calendar-recovery{
+ background:#69c3a0!important;color:#071522!important;border-color:#69c3a0!important;
+}
+#calendarGrid button.day.selected{
+ outline:3px solid #e7eef5!important;outline-offset:2px!important;
+ border:1px solid #071522!important;
+ box-shadow:0 0 0 5px rgba(88,195,184,.24)!important;
+}
+#calendarGrid button.day.selected .day-number{color:inherit!important}
+#calendarGrid .day-events{
+ display:flex!important;flex-direction:column!important;align-items:center!important;
+ width:100%!important;min-width:0!important;overflow:hidden!important;gap:2px!important;
+}
+#calendarGrid .day-event-chip{
+ display:block!important;max-width:100%!important;overflow:hidden!important;
+ text-overflow:ellipsis!important;white-space:nowrap!important;
+ font-size:7px!important;line-height:1.15!important;padding:1px 2px!important;
+ border-radius:3px!important;background:rgba(4,23,34,.16)!important;color:#08202b!important;
+}
 #calendarGrid .day-more{font-size:7px!important;color:#08202b!important}
-#calendarGrid .day-score:empty{display:none}
+#calendarGrid .day.calendar-no-data .day-score{display:none!important}
+#calendarGrid .day.calendar-no-data .day-events{display:none!important}
 #calendarEvents{margin-top:18px!important}
-.calendar-agenda-row{padding:12px 4px!important}
-.calendar-agenda-row .agenda-marker{width:4px;border-radius:4px;background:#59c7b8;flex:none}
-.calendar-agenda-row.concert .agenda-marker{background:#d9ad70}
-.calendar-agenda-row.practice .agenda-marker{background:#69c3a0}
-.calendar-agenda-row.checkin .agenda-marker{background:#7da9d2}
-.calendar-agenda-row .agenda-copy{flex:1}
-.calendar-agenda-row .agenda-copy strong{font-size:14px}
-.calendar-agenda-row .agenda-copy span,.calendar-agenda-row .agenda-copy small{font-size:12px}
 .calendar-legend{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0 4px;font-size:11px;color:#9aadc0}
 .calendar-legend span{display:flex;align-items:center;gap:6px}
 .calendar-legend i{width:9px;height:9px;border-radius:50%;display:inline-block}
 @media(max-width:390px){
  #calendarGrid.daygrid{gap:5px!important}
- #calendarGrid .day{padding:6px 2px 4px!important;border-radius:10px!important}
- #calendarGrid .day-number{font-size:12px!important}
+ #calendarGrid button.day{padding:6px 2px 4px!important;border-radius:10px!important}
+ #calendarGrid button.day .day-number{font-size:12px!important}
 }
 
 </style>
