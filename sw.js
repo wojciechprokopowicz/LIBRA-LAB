@@ -1,4 +1,4 @@
-const CACHE='libra-lab-v15-stressrest-import-cache';
+const CACHE='libra-lab-v16-calendar-performance-cache';
 const CORE=['./','./index.html','./manifest.webmanifest'];
 
 self.addEventListener('install', event => {

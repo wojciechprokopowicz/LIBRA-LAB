@@ -407,6 +407,97 @@ body.performance-active #performance .orb *{color:#fff!important}
 body.performance-active #exitPerformance{transform:translateY(-8px)}
 @media(max-width:390px){.day{min-height:70px;padding:6px 4px}.day-event-chip{font-size:7px}.day-empty{min-height:70px}}
 
+
+/* v16 — compact recovery calendar and precisely centered exit control */
+body.performance-active #performance .card.performance{align-items:center!important}
+body.performance-active #exitPerformance{
+  position:relative!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  align-self:center!important;
+  left:50%!important;
+  transform:translateX(-50%)!important;
+  width:96px!important;
+  min-width:96px!important;
+  height:96px!important;
+  min-height:96px!important;
+  padding:0!important;
+  margin:0 auto!important;
+  border-radius:50%!important;
+  font-size:0!important;
+  line-height:1!important;
+}
+body.performance-active #exitPerformance::first-letter{font-size:32px}
+body.performance-active #exitPerformance{color:#fff!important}
+#calendarGrid.daygrid{
+ display:grid!important;
+ grid-template-columns:repeat(7,minmax(0,1fr))!important;
+ gap:7px!important;
+ margin-top:14px!important;
+ align-items:stretch;
+}
+#calendarGrid .weekday{
+ padding:4px 0 8px!important;
+ font-size:11px!important;
+ font-weight:500;
+ color:#8fa2b5!important;
+ text-align:center!important;
+}
+#calendarGrid .day-empty{aspect-ratio:1/1;min-height:0!important}
+#calendarGrid .day{
+ aspect-ratio:1/1!important;
+ min-height:0!important;
+ height:auto!important;
+ padding:8px 5px 5px!important;
+ border-radius:13px!important;
+ display:flex!important;
+ flex-direction:column!important;
+ align-items:center!important;
+ justify-content:flex-start!important;
+ gap:3px!important;
+ overflow:hidden!important;
+ text-align:center!important;
+ background:#091321!important;
+ border:1px solid rgba(100,127,151,.12)!important;
+ color:#91a1b5!important;
+ box-shadow:none!important;
+}
+#calendarGrid .day-number{font-size:13px!important;font-weight:650!important;color:inherit!important;align-self:center}
+#calendarGrid .day-score{font-size:10px;font-weight:700;line-height:1.2;color:rgba(4,20,30,.85)}
+#calendarGrid .day.calendar-no-data{background:#091321!important;color:#8091a7!important;border-color:rgba(100,127,151,.12)!important}
+#calendarGrid .day.calendar-stress{background:#e47783!important;color:#071522!important;border-color:#e47783!important}
+#calendarGrid .day.calendar-moderate{background:#d9ad70!important;color:#071522!important;border-color:#d9ad70!important}
+#calendarGrid .day.calendar-recovery{background:#69c3a0!important;color:#071522!important;border-color:#69c3a0!important}
+#calendarGrid .day.selected{
+ outline:3px solid #e6edf4!important;
+ outline-offset:2px!important;
+ border-color:#071522!important;
+ box-shadow:0 0 0 5px rgba(88,195,184,.25)!important;
+}
+#calendarGrid .day.selected .day-number{color:#061522!important}
+#calendarGrid .day-events{width:100%;display:flex;flex-direction:column;align-items:center;gap:2px;overflow:hidden}
+#calendarGrid .day-event-chip{font-size:7px!important;max-width:100%;padding:1px 2px!important;line-height:1.15!important;background:rgba(4,23,34,.16)!important;color:#08202b!important}
+#calendarGrid .day-more{font-size:7px!important;color:#08202b!important}
+#calendarGrid .day-score:empty{display:none}
+#calendarEvents{margin-top:18px!important}
+.calendar-agenda-row{padding:12px 4px!important}
+.calendar-agenda-row .agenda-marker{width:4px;border-radius:4px;background:#59c7b8;flex:none}
+.calendar-agenda-row.concert .agenda-marker{background:#d9ad70}
+.calendar-agenda-row.practice .agenda-marker{background:#69c3a0}
+.calendar-agenda-row.checkin .agenda-marker{background:#7da9d2}
+.calendar-agenda-row .agenda-copy{flex:1}
+.calendar-agenda-row .agenda-copy strong{font-size:14px}
+.calendar-agenda-row .agenda-copy span,.calendar-agenda-row .agenda-copy small{font-size:12px}
+.calendar-legend{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0 4px;font-size:11px;color:#9aadc0}
+.calendar-legend span{display:flex;align-items:center;gap:6px}
+.calendar-legend i{width:9px;height:9px;border-radius:50%;display:inline-block}
+@media(max-width:390px){
+ #calendarGrid.daygrid{gap:5px!important}
+ #calendarGrid .day{padding:6px 2px 4px!important;border-radius:10px!important}
+ #calendarGrid .day-number{font-size:12px!important}
+}
+
 </style>
 </head>
 <body>
@@ -490,7 +581,7 @@ body.performance-active #exitPerformance{transform:translateY(-8px)}
   <div class="row"><h1>Calendar & Load</h1><div style="display:flex;gap:7px"><button class="choice" data-go="dienstplan">Import PDF</button><button class="choice" id="addCalendarEventTop" aria-label="Add event">＋</button></div></div>
   <div class="card">
     <div class="row"><button class="choice" id="prevMonth">‹</button><strong id="monthLabel"></strong><button class="choice" id="nextMonth">›</button></div>
-    <div class="daygrid" id="calendarGrid"></div>
+    <div class="daygrid" id="calendarGrid"></div><div class="calendar-legend"><span><i style="background:#e47783"></i>Recovery needed</span><span><i style="background:#d9ad70"></i>Moderate</span><span><i style="background:#69c3a0"></i>Good recovery</span></div>
     <div class="calendar-day-detail" id="calendarDayDetail">
       <div class="calendar-detail-heading" id="selectedDateLabel">Selected day</div>
       <div id="calendarEvents" class="hint empty">No events recorded for this day.</div>
@@ -809,11 +900,13 @@ function renderCalendar(){
  for(let n=1;n<=days;n++){
   const date=new Date(y,m,n).toLocaleDateString('en-CA');
   const items=calendarCellItems(date);
-  const dayScore=calcIndex(date).value;
-  const tone=dayScore<40?'load-low':dayScore<58?'load-mid':dayScore<76?'load-balanced':'load-good';
+  const legacyScore=(db.stressRestHistory||[]).find(x=>x.date===date)?.index;
+  const hasData=legacyScore!==undefined||dateEntries(date).length>0||db.practices.some(p=>p.date===date)||!!db.mornings[date]||!!db.evenings[date];
+  const dayScore=legacyScore!==undefined?legacyScore:calcIndex(date).value;
+  const tone=!hasData?'calendar-no-data':dayScore<45?'calendar-stress':dayScore<65?'calendar-moderate':'calendar-recovery';
   const labels=items.map(item=>`<span class="day-event-chip ${item.kind}">${item.label}</span>`).join('');
   const more=(dateEntries(date).length+db.practices.filter(p=>p.date===date).length)>2?'<span class="day-more">+ more</span>':'';
-  grid.innerHTML+=`<button class="day ${date===selectedDate?'selected':''} ${tone}" data-date="${date}" aria-label="${date}, ${items.map(x=>x.label).join(', ')||'No activity'}"><span class="day-number">${n}</span><span class="day-events">${labels}${more}</span></button>`;
+  grid.innerHTML+=`<button class="day ${date===selectedDate?'selected':''} ${tone}" data-date="${date}" aria-label="${date}, ${hasData?'Index '+dayScore:'No recorded data'}, ${items.map(x=>x.label).join(', ')}"><span class="day-number">${n}</span>${hasData?`<span class="day-score">${dayScore}</span>`:''}<span class="day-events">${labels}${more}</span></button>`;
  }
  document.getElementById('selectedDateLabel').textContent=dateLabel(selectedDate);
  renderCalendarEvents();
