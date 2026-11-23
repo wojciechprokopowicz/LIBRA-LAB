@@ -1,12 +1,18 @@
-# LIBRA Lab v5 — flat upload package
+# LIBRA Lab v13 — Check-ins & Practice Log
 
-All files are in the repository root. No assets folder is required. The header brand is integrated into the UI; the iPhone home-screen title is LIBRA Lab and the app icon is embedded in the manifest and HTML.
+Flat upload package: six files in repository root, no assets folder.
 
-## Upload
-1. Export a backup from the current app.
-2. Replace the root files in the `LIBRA-LAB` repository with the files in this package.
-3. Do not create an assets folder.
-4. Keep GitHub Pages on `main` / root.
-5. After deployment, close and reopen the iPhone web app. If the old version remains, open the site in Safari and reload.
+## Changes
+- Morning Check-in now records exact sleep duration from 3 to 12 hours in 30-minute increments.
+- Evening Check-in now uses a 1–5 slider with clear condition labels and descriptions.
+- Removed Physical Activity and Activity Type from Evening Check-in.
+- Nap has an optional duration field; Travel remains a Yes/No context field and does not directly change the index.
+- Index now reads exact sleep minutes while remaining compatible with older saved sleep-duration labels.
+- Evening condition contributes proportionally using the 1–5 rating.
+- Practice Log stays open after saving a session.
+- Added a save confirmation and Today's Practice list with total duration and fatigue ratings.
+- Form controls use 16px text to prevent iOS Safari automatic input zoom.
+- Existing local database key is unchanged.
 
-The existing localStorage key `libra_lab_local_v1` is retained. The index remains an experimental heuristic, not a medically validated measure.
+## Install
+Back up your records first. Replace the six files in the root of `LIBRA-LAB` on branch `main`. Keep Pages on `main` / root. Open once with `?v=13`.

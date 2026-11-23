@@ -1,11 +1,9 @@
-# v5
-- Stress-Rest score moved inside the semicircular gauge.
-- Gauge now uses a red-to-green gradient.
-- Removed the experimental estimate disclaimer under the index.
-- Removed Preferences card.
-- Recolored gold accents to a midnight blue / teal palette.
-- Calendar days now use color states based on that day's index.
-- Enlarged Add Activity back navigation.
-- Replaced rectangular logo image with integrated LIBRA Lab header lockup.
-- Added LIBRA Lab iPhone home-screen title and embedded app icon.
-- Retained local data key.
+# v13
+- Exact sleep duration slider (30-minute increments).
+- Evening overall condition slider with descriptive labels.
+- Removed Physical Activity from evening form; nap duration and travel context retained.
+- Index reads exact sleep duration and evening condition scale.
+- Practice save no longer navigates away; adds visible saved-session feedback and today's session list.
+- iOS form controls set to 16px to prevent automatic zoom.
+- Preserved local database key and old sleep record compatibility.
+- Bumped service-worker cache.
