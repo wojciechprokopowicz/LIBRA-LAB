@@ -409,101 +409,112 @@ body.performance-active #exitPerformance{transform:translateY(-8px)}
 
 
 
-/* v17 — stable square calendar cells and visible centered exit glyph */
-body.performance-active #performance .card.performance{
- display:flex!important;flex-direction:column!important;align-items:center!important;
-}
+
+/* v18 — minimalist calendar, deterministic date layout, centered exit below orb */
+body.performance-active #performance .card.performance{display:flex!important;flex-direction:column!important;align-items:center!important}
 body.performance-active #exitPerformance{
- position:relative!important;left:auto!important;right:auto!important;bottom:auto!important;
- align-self:center!important;transform:none!important;
- display:flex!important;align-items:center!important;justify-content:center!important;
+ position:relative!important;left:auto!important;right:auto!important;align-self:center!important;
+ transform:translateY(22px)!important;display:flex!important;align-items:center!important;justify-content:center!important;
  width:76px!important;height:76px!important;min-width:76px!important;min-height:76px!important;
- margin:0 auto!important;padding:0!important;border-radius:50%!important;
- font-family:Arial,sans-serif!important;font-size:36px!important;font-weight:300!important;
- line-height:1!important;color:#fff!important;opacity:1!important;
+ margin:24px auto 0!important;padding:0!important;border-radius:50%!important;
+ font-family:Arial,sans-serif!important;font-size:36px!important;font-weight:300!important;line-height:1!important;
+ color:#fff!important;opacity:1!important;text-indent:0!important;
 }
-body.performance-active #exitPerformance::before,
-body.performance-active #exitPerformance::after{content:none!important}
+body.performance-active #exitPerformance::before,body.performance-active #exitPerformance::after{content:none!important}
 #calendarGrid.daygrid{
- display:grid!important;
- grid-template-columns:repeat(7,minmax(0,1fr))!important;
- grid-auto-rows: minmax(0,1fr)!important;
- gap:7px!important;
- align-items:stretch!important;
- width:100%!important;
+ display:grid!important;grid-template-columns:repeat(7,minmax(0,1fr))!important;
+ grid-auto-rows:62px!important;gap:7px!important;align-items:stretch!important;width:100%!important;
+ margin-top:16px!important;
 }
 #calendarGrid .weekday{
  display:flex!important;align-items:center!important;justify-content:center!important;
- min-width:0!important;padding:4px 0 8px!important;
- font-size:11px!important;color:#91a5b8!important;
+ padding:0!important;font-size:11px!important;color:#91a5b8!important;
 }
-#calendarGrid .day-empty{
- display:block!important;width:100%!important;height:auto!important;
- min-height:0!important;aspect-ratio:1/1!important;
-}
+#calendarGrid .day-empty{display:block!important;width:100%!important;height:62px!important;min-height:0!important}
 #calendarGrid button.day{
- box-sizing:border-box!important;
- display:flex!important;flex-direction:column!important;
- align-items:center!important;justify-content:flex-start!important;
- width:100%!important;height:auto!important;min-width:0!important;
- min-height:0!important;aspect-ratio:1/1!important;
- padding:8px 3px 5px!important;margin:0!important;
- border-radius:13px!important;border:1px solid rgba(100,127,151,.16)!important;
- overflow:hidden!important;text-align:center!important;
- background:#091321!important;color:#91a1b5!important;
+ box-sizing:border-box!important;display:flex!important;flex-direction:column!important;
+ align-items:flex-start!important;justify-content:space-between!important;
+ width:100%!important;height:62px!important;min-width:0!important;min-height:0!important;
+ aspect-ratio:auto!important;padding:7px 7px 5px!important;margin:0!important;
+ border-radius:11px!important;border:1px solid rgba(100,127,151,.18)!important;
+ overflow:hidden!important;text-align:left!important;background:#091321!important;color:#9aabc0!important;
  box-shadow:none!important;
 }
 #calendarGrid button.day .day-number{
- display:block!important;position:static!important;
- width:auto!important;height:auto!important;min-height:0!important;
- margin:0 auto!important;padding:0!important;
- font-size:13px!important;line-height:1.25!important;font-weight:650!important;
- color:inherit!important;opacity:1!important;visibility:visible!important;
+ display:block!important;position:static!important;width:auto!important;height:auto!important;
+ margin:0!important;padding:0!important;font-size:13px!important;line-height:1.15!important;
+ font-weight:600!important;color:inherit!important;opacity:1!important;visibility:visible!important;
 }
 #calendarGrid button.day .day-score{
- display:block!important;font-size:10px!important;line-height:1.2!important;
- font-weight:700!important;color:rgba(4,20,30,.86)!important;
+ display:block!important;align-self:flex-end!important;margin-top:auto!important;
+ font-size:10px!important;line-height:1!important;font-weight:700!important;color:rgba(4,20,30,.82)!important;
 }
-#calendarGrid button.day.calendar-no-data{
- background:#091321!important;color:#91a1b5!important;
- border-color:rgba(100,127,151,.16)!important;
-}
-#calendarGrid button.day.calendar-stress{
- background:#e47783!important;color:#071522!important;border-color:#e47783!important;
-}
-#calendarGrid button.day.calendar-moderate{
- background:#d9ad70!important;color:#071522!important;border-color:#d9ad70!important;
-}
-#calendarGrid button.day.calendar-recovery{
- background:#69c3a0!important;color:#071522!important;border-color:#69c3a0!important;
-}
+#calendarGrid button.day.calendar-no-data{background:#091321!important;color:#91a1b5!important;border-color:rgba(100,127,151,.16)!important}
+#calendarGrid button.day.calendar-no-data .day-score{display:none!important}
+#calendarGrid button.day.calendar-stress{background:#e47783!important;color:#071522!important;border-color:#e47783!important}
+#calendarGrid button.day.calendar-moderate{background:#d9ad70!important;color:#071522!important;border-color:#d9ad70!important}
+#calendarGrid button.day.calendar-recovery{background:#69c3a0!important;color:#071522!important;border-color:#69c3a0!important}
 #calendarGrid button.day.selected{
- outline:3px solid #e7eef5!important;outline-offset:2px!important;
- border:1px solid #071522!important;
- box-shadow:0 0 0 5px rgba(88,195,184,.24)!important;
+ outline:2px solid #e7eef5!important;outline-offset:2px!important;
+ border-color:#45cbbd!important;box-shadow:0 0 0 3px rgba(88,195,184,.18)!important;
 }
-#calendarGrid button.day.selected .day-number{color:inherit!important}
-#calendarGrid .day-events{
- display:flex!important;flex-direction:column!important;align-items:center!important;
- width:100%!important;min-width:0!important;overflow:hidden!important;gap:2px!important;
-}
-#calendarGrid .day-event-chip{
- display:block!important;max-width:100%!important;overflow:hidden!important;
- text-overflow:ellipsis!important;white-space:nowrap!important;
- font-size:7px!important;line-height:1.15!important;padding:1px 2px!important;
- border-radius:3px!important;background:rgba(4,23,34,.16)!important;color:#08202b!important;
-}
-#calendarGrid .day-more{font-size:7px!important;color:#08202b!important}
-#calendarGrid .day.calendar-no-data .day-score{display:none!important}
-#calendarGrid .day.calendar-no-data .day-events{display:none!important}
+#calendarGrid .day-events{display:none!important}
 #calendarEvents{margin-top:18px!important}
-.calendar-legend{display:flex;flex-wrap:wrap;gap:12px;margin:18px 0 4px;font-size:11px;color:#9aadc0}
+.calendar-day-detail{border-top:1px solid rgba(100,127,151,.2);margin-top:18px;padding-top:14px}
+.calendar-detail-heading{font-size:17px;font-weight:600;color:#edf4f8;padding:4px 0 14px}
+.calendar-legend{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0 2px;font-size:11px;color:#9aadc0}
 .calendar-legend span{display:flex;align-items:center;gap:6px}
 .calendar-legend i{width:9px;height:9px;border-radius:50%;display:inline-block}
 @media(max-width:390px){
- #calendarGrid.daygrid{gap:5px!important}
- #calendarGrid button.day{padding:6px 2px 4px!important;border-radius:10px!important}
+ #calendarGrid.daygrid{grid-auto-rows:56px!important;gap:5px!important}
+ #calendarGrid .day-empty{height:56px!important}
+ #calendarGrid button.day{height:56px!important;padding:6px 5px 4px!important;border-radius:9px!important}
  #calendarGrid button.day .day-number{font-size:12px!important}
+}
+
+
+/* v19 — two-page dashboard with swipe navigation */
+.dashboard-pages-nav{
+ display:grid;grid-template-columns:1fr 1fr;gap:5px;
+ padding:4px;margin:0 0 14px;border:1px solid rgba(100,127,151,.22);
+ border-radius:14px;background:rgba(4,15,27,.72);
+}
+.dashboard-pages-nav button{
+ min-height:42px;border:0;border-radius:10px;background:transparent;
+ color:#91a5b8;font:500 13px/1.2 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+.dashboard-pages-nav button.active{
+ color:#eaf4f6;background:linear-gradient(120deg,rgba(25,113,127,.55),rgba(20,75,91,.55));
+ box-shadow:inset 0 0 0 1px rgba(65,195,188,.45);
+}
+.dashboard-pager{
+ display:flex;align-items:flex-start;width:100%;overflow-x:auto;overflow-y:visible;
+ scroll-snap-type:x mandatory;scroll-behavior:smooth;overscroll-behavior-x:contain;
+ scrollbar-width:none;-webkit-overflow-scrolling:touch;
+}
+.dashboard-pager::-webkit-scrollbar{display:none}
+.dashboard-page{flex:0 0 100%;width:100%;min-width:100%;scroll-snap-align:start;scroll-snap-stop:always}
+.dashboard-page>.card:first-child{margin-top:0}
+.dashboard-page .checkin-shortcuts{margin-top:4px}
+.dashboard-page .add-activity{margin-top:12px}
+body.performance-active #performance .topline{
+ display:flex!important;justify-content:center!important;align-items:center!important;
+ margin:0 0 0!important;padding-top:4vh!important;
+}
+body.performance-active #performance .topline h1{
+ margin:0!important;text-align:center!important;width:100%!important;
+ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;
+ font-size:clamp(24px,6vw,32px)!important;font-weight:500!important;
+ letter-spacing:.13em!important;text-transform:uppercase!important;
+ line-height:1.15!important;color:#f4f6f8!important;
+}
+body.performance-active #performance .performance{
+ justify-content:center!important;
+}
+body.performance-active #exitPerformance{
+ width:60px!important;height:60px!important;min-width:60px!important;min-height:60px!important;
+ margin:34px auto 0!important;transform:translateY(24px)!important;
+ font-size:30px!important;font-weight:300!important;
 }
 
 </style>
@@ -517,6 +528,12 @@ body.performance-active #exitPerformance::after{content:none!important}
 </header>
 
 <section class="view active" id="dashboard">
+  <div class="dashboard-pages-nav" role="tablist" aria-label="Dashboard pages">
+    <button class="active" type="button" data-dashboard-page="0" role="tab" aria-selected="true">Overview</button>
+    <button type="button" data-dashboard-page="1" role="tab" aria-selected="false">Daily Input</button>
+  </div>
+  <div class="dashboard-pager" id="dashboardPager">
+    <div class="dashboard-page" data-page="0" role="tabpanel">
   <div class="card index-card">
     <div class="index-head"><span class="index-label">Stress-Rest Index</span></div>
     <div class="gauge-wrap"><svg viewBox="0 0 320 178" role="img" aria-label="Stress-Rest Index gauge"><defs><linearGradient id="indexGradient" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#bd666e"/><stop offset="48%" stop-color="#b9a36f"/><stop offset="100%" stop-color="#58ad91"/></linearGradient></defs><path class="gauge-track" d="M28 150 A132 132 0 0 1 292 150"/><path class="gauge-value" id="indexGauge" d="M28 150 A132 132 0 0 1 292 150"/></svg><strong class="gauge-score" id="indexValue">68</strong><div class="gauge-caption"><span>Stress</span><span>Rest</span></div></div>
@@ -531,6 +548,8 @@ body.performance-active #exitPerformance::after{content:none!important}
     <div class="progress-chart-title">Daily Stress-Rest Index</div><div class="progress-chart" id="progressChart"><div class="progress-empty">Record check-ins and activities to build your history.</div></div>
     <p class="progress-footnote">Tap a day to open its history.</p>
   </section>
+    </div>
+    <div class="dashboard-page" data-page="1" role="tabpanel">
   <div class="card overview open" id="overviewCard">
     <button class="overview-toggle" id="overviewToggle"><strong>Today’s Overview</strong><span id="overviewChevron">⌃</span></button>
     <div class="overview-content" id="overviewContent"></div>
@@ -543,6 +562,8 @@ body.performance-active #exitPerformance::after{content:none!important}
   <div class="card today-plan-card">
     <div class="row"><h3>Today’s suggested direction</h3><button class="text-link" data-go="planning">Weekly plan ›</button></div>
     <p id="dashboardPlan" class="hint">Your suggested direction will appear here as you record check-ins and activities.</p>
+  </div>
+    </div>
   </div>
 </section>
 
@@ -777,13 +798,38 @@ body.performance-active #exitPerformance::after{content:none!important}
 <div class="overlay" id="confirmOverlay"><div class="sheet"><h2 id="confirmTitle">Confirm</h2><p class="hint" id="confirmText"></p><div class="screen-actions"><button class="btn" id="confirmCancel">Cancel</button><button class="btn primary" id="confirmOk">Confirm</button></div></div></div>
 <script>
 const DB_KEY='libra_lab_local_v1';
-const today=()=>new Date().toLocaleDateString('en-CA');
+const isoLocalDate=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+const today=()=>isoLocalDate(new Date());
 const dateLabel=d=>{if(!d)return '';const x=new Date(d+'T12:00:00');return x.toLocaleDateString('en-GB',{day:'2-digit',month:'2-digit',year:'numeric'})};
 const fresh=()=>({version:1,practices:[],events:[],mornings:{},evenings:{},weeklies:{},plans:{},coffee:{},notes:[],reports:[],errors:[],settings:{performanceMode:false},stressRestHistory:[]});
 let db=loadDB(),selectedDate=today(),calendarMonth=new Date(),pendingRestore=null,pendingConfirm=null;
 function loadDB(){try{return {...fresh(),...JSON.parse(localStorage.getItem(DB_KEY)||'{}')}}catch(e){return fresh()}}
 function saveDB(){try{localStorage.setItem(DB_KEY,JSON.stringify(db));refresh();}catch(e){toast('Save failed — your changes have not been saved.');db.errors.push({date:new Date().toISOString(),message:'Local storage save failed'});}}
 function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.style.display='block';clearTimeout(window._toastTimer);window._toastTimer=setTimeout(()=>el.style.display='none',2400)}
+
+const dashboardPager=document.getElementById('dashboardPager');
+function setDashboardPage(index){
+ if(!dashboardPager)return;
+ const page=Math.max(0,Math.min(1,index));
+ dashboardPager.scrollTo({left:page*dashboardPager.clientWidth,behavior:'smooth'});
+ document.querySelectorAll('[data-dashboard-page]').forEach((b,i)=>{
+  b.classList.toggle('active',i===page);b.setAttribute('aria-selected',i===page?'true':'false');
+ });
+}
+document.querySelectorAll('[data-dashboard-page]').forEach(b=>b.addEventListener('click',()=>setDashboardPage(Number(b.dataset.dashboardPage))));
+if(dashboardPager){
+ let dashboardScrollTimer;
+ dashboardPager.addEventListener('scroll',()=>{
+  clearTimeout(dashboardScrollTimer);
+  dashboardScrollTimer=setTimeout(()=>{
+   const page=Math.round(dashboardPager.scrollLeft/Math.max(1,dashboardPager.clientWidth));
+   document.querySelectorAll('[data-dashboard-page]').forEach((b,i)=>{
+    b.classList.toggle('active',i===page);b.setAttribute('aria-selected',i===page?'true':'false');
+   });
+  },70);
+ },{passive:true});
+}
+
 const viewHistory=[];
 function go(id,fromHistory=false){
  const current=document.querySelector('.view.active')?.id;
@@ -812,7 +858,7 @@ function dayLoad(date){const p=db.practices.filter(x=>x.date===date).reduce((a,x
 function coffeeCount(date=today()){return (db.coffee[date]||[]).length}
 function hasConcert(date){return db.events.some(e=>e.date===date&&/concert/i.test(e.type))}
 function coffeeAdvice(date=today()){if(hasConcert(date)||hasConcert(addDays(date,1)))return 'Avoid coffee today — a concert is scheduled today or tomorrow.';const n=coffeeCount(date);return n<=1?'One coffee is OK.':n===2?'Two coffees · Moderate.':'More than two coffees · High.'}
-function addDays(d,n){const x=new Date(d+'T12:00:00');x.setDate(x.getDate()+n);return x.toLocaleDateString('en-CA')}
+function addDays(d,n){const x=new Date(d+'T12:00:00');x.setDate(x.getDate()+n);return isoLocalDate(x)}
 function dayRecord(date){return {morning:db.mornings[date]||null,evening:db.evenings[date]||null,practice:db.practices.filter(x=>x.date===date),events:dateEntries(date),coffee:db.coffee[date]||[]}}
 function calcIndex(date){
   // Provisional transparent heuristic. Missing fields are neutral, not zero.
@@ -906,7 +952,7 @@ function renderCalendar(){
  grid.innerHTML=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(x=>`<div class="weekday">${x}</div>`).join('');
  for(let i=0;i<offset;i++)grid.innerHTML+='<div class="day-empty"></div>';
  for(let n=1;n<=days;n++){
-  const date=new Date(y,m,n).toLocaleDateString('en-CA');
+  const date=isoLocalDate(new Date(y,m,n));
   const items=calendarCellItems(date);
   const legacyScore=(db.stressRestHistory||[]).find(x=>x.date===date)?.index;
   const hasData=legacyScore!==undefined||dateEntries(date).length>0||db.practices.some(p=>p.date===date)||!!db.mornings[date]||!!db.evenings[date];
@@ -978,42 +1024,49 @@ function parseCSV(text){
  return rows;
 }
 
+
 let pendingStressRestRows=[];
 document.getElementById('csvImportFile').addEventListener('change',async e=>{
- const file=e.target.files[0];pendingCSVRows=[];pendingStressRestRows=[];
+ const file=e.target.files?.[0];pendingCSVRows=[];pendingStressRestRows=[];
  const preview=document.getElementById('csvImportPreview'),button=document.getElementById('confirmCSVImport');
- button.disabled=true;if(!file){preview.textContent='No CSV selected.';return}
+ button.disabled=true;button.textContent='Import Activities';
+ if(!file){preview.textContent='No CSV selected.';return}
  try{
-  const parsed=parseCSV(await file.text());if(!parsed.length)throw new Error('Empty CSV');
-  const headers=parsed.shift().map(x=>x.trim().toLowerCase());
+  const parsed=parseCSV((await file.text()).replace(/^\uFEFF/,''));
+  if(parsed.length<2)throw new Error('The CSV contains no data rows.');
+  const headers=parsed.shift().map(x=>x.replace(/^\uFEFF/,'').trim().toLowerCase());
   const idx=name=>headers.indexOf(name.toLowerCase());
-  const stressColumns=['date','subjective_checkin_0_100','sleep_hours','playing_at_work_hours','personal_practice_hours','total_playing_hours','musical_fatigue_1_5','combined_stress_rest_index_0_100','note'];
-  const isStressRest=stressColumns.every(name=>idx(name)>=0);
+  const required=['date','subjective_checkin_0_100','sleep_hours','playing_at_work_hours','personal_practice_hours','total_playing_hours','musical_fatigue_1_5','combined_stress_rest_index_0_100','note'];
+  const missing=required.filter(name=>idx(name)<0);
+  const isStressRest=missing.length===0;
   if(isStressRest){
-   pendingStressRestRows=parsed.map(r=>({
-    date:(r[idx('date')]||'').trim(),
-    subjective:Number(r[idx('subjective_checkin_0_100')]),
-    sleep:Number(r[idx('sleep_hours')]),
-    work:Number(r[idx('playing_at_work_hours')]),
-    practice:Number(r[idx('personal_practice_hours')]),
-    total:Number(r[idx('total_playing_hours')]),
-    fatigue:(r[idx('musical_fatigue_1_5')]||'').trim()===''?null:Number(r[idx('musical_fatigue_1_5')]),
-    index:Number(r[idx('combined_stress_rest_index_0_100')]),
-    note:r[idx('note')]||''
-   })).filter(x=>/^\d{4}-\d{2}-\d{2}$/.test(x.date)&&Number.isFinite(x.index)&&x.index>=0&&x.index<=100);
+   const rows=parsed.map((r,i)=>{
+    const val=name=>(r[idx(name)]??'').trim();
+    const number=name=>val(name)===''?null:Number(val(name));
+    const index=number('combined_stress_rest_index_0_100');
+    return {date:val('date'),subjective:number('subjective_checkin_0_100'),sleep:number('sleep_hours'),work:number('playing_at_work_hours'),practice:number('personal_practice_hours'),total:number('total_playing_hours'),fatigue:number('musical_fatigue_1_5'),index,note:r[idx('note')]??'',_row:i+2};
+   });
+   const valid=rows.filter(x=>/^\d{4}-\d{2}-\d{2}$/.test(x.date)&&Number.isFinite(x.index)&&x.index>=0&&x.index<=100);
+   const invalid=rows.length-valid.length;
+   pendingStressRestRows=valid.map(({_row,...x})=>x);
    const existing=new Set((db.stressRestHistory||[]).map(x=>x.date));
    const duplicates=pendingStressRestRows.filter(x=>existing.has(x.date)).length;
-   preview.innerHTML=`<strong>Stress-Rest CSV detected.</strong><br>${pendingStressRestRows.length} valid daily records found.<br>${duplicates} dates already exist in the imported Stress-Rest history and will be updated; LIBRA Lab check-ins, practice and calendar entries will remain untouched.<br><br>Data includes sleep, work playing hours, personal practice, musical fatigue, original Stress-Rest Index and notes.`;
+   preview.innerHTML=`<strong>Stress-Rest CSV detected.</strong><br><strong>${pendingStressRestRows.length} valid records</strong> from ${rows.length} rows.<br>${invalid} invalid rows will be skipped.<br>${duplicates} dates already exist in imported Stress-Rest history and will be updated. LIBRA Lab check-ins, practice and calendar entries will not be replaced.<br><br>Original Stress-Rest Index, sleep, work/practice hours, fatigue and notes will be preserved.`;
    button.textContent='Import Stress-Rest History';
    button.disabled=pendingStressRestRows.length===0;
+   if(!pendingStressRestRows.length)preview.innerHTML+='<br><br><strong>No valid rows found.</strong> Check that the CSV contains dates in YYYY-MM-DD format and index values from 0 to 100.';
    return;
   }
-  if(idx('kind')<0||idx('date')<0||idx('type')<0)throw new Error('Unknown CSV structure');
+  if(idx('kind')<0||idx('date')<0||idx('type')<0)throw new Error('CSV headers do not match a supported export. Found: '+headers.join(', '));
   pendingCSVRows=parsed.map(r=>({kind:(r[idx('kind')]||'').trim().toLowerCase(),date:(r[idx('date')]||'').trim(),type:(r[idx('type')]||'').trim(),duration:Number(r[idx('duration')]||0),intensity:r[idx('intensity')]||'Moderate',loadType:r[idx('loadtype')]||'Both',embFatigue:Number(r[idx('embfatigue')]||3),mentalFatigue:Number(r[idx('mentalfatigue')]||3),notes:r[idx('notes')]||''}))
    .filter(x=>/^\d{4}-\d{2}-\d{2}$/.test(x.date)&&['practice','event'].includes(x.kind)&&x.type);
-  preview.textContent=`LIBRA Lab activity CSV detected: ${pendingCSVRows.filter(x=>x.kind==='practice').length} practice entries and ${pendingCSVRows.filter(x=>x.kind==='event').length} calendar events. These will be added to your existing data.`;
+  preview.textContent=`LIBRA Lab activity CSV detected: ${pendingCSVRows.length} valid entries.`;
   button.textContent='Import Activities';button.disabled=pendingCSVRows.length===0;
- }catch(err){preview.textContent='CSV format not recognized. Select a Stress-Rest export or LIBRA Lab Activities CSV.';button.disabled=true;toast('Could not read CSV file.')}
+ }catch(err){
+  pendingStressRestRows=[];pendingCSVRows=[];
+  preview.textContent=`Could not read this CSV: ${err.message}`;
+  button.disabled=true;toast('CSV import could not be prepared.');
+ }
 });
 document.getElementById('confirmCSVImport').onclick=()=>{
  if(pendingStressRestRows.length){
@@ -1026,7 +1079,7 @@ document.getElementById('confirmCSVImport').onclick=()=>{
   document.getElementById('csvImportPreview').textContent=`Imported ${count} Stress-Rest daily records.`;
   document.getElementById('confirmCSVImport').disabled=true;
   document.getElementById('confirmCSVImport').textContent='Import Activities';
-  toast('Stress-Rest history imported.');go('dashboard');return;
+  toast(`Imported ${count} Stress-Rest days.`);go('dashboard');return;
  }
  if(!pendingCSVRows.length)return;
  const practices=pendingCSVRows.filter(x=>x.kind==='practice').map(x=>({id:crypto.randomUUID(),date:x.date,category:x.type,duration:x.duration,intensity:x.intensity,loadType:x.loadType,embFatigue:x.embFatigue,mentalFatigue:x.mentalFatigue,notes:x.notes}));
@@ -1065,7 +1118,7 @@ function renderPlan(){
  const box=document.getElementById('weekPlanDays'); if(!box)return;
  const monday=new Date();monday.setDate(monday.getDate()-((monday.getDay()+6)%7));
  box.innerHTML='';
- for(let i=0;i<7;i++){const d=new Date(monday);d.setDate(monday.getDate()+i);const iso=d.toLocaleDateString('en-CA');const b=document.createElement('button');b.className='week-day'+(iso===selectedPlanDate?' active':'');b.innerHTML=d.toLocaleDateString('en-US',{weekday:'short'})+'<small>'+d.getDate()+'</small>';b.onclick=()=>{selectedPlanDate=iso;renderPlan()};box.appendChild(b)}
+ for(let i=0;i<7;i++){const d=new Date(monday);d.setDate(monday.getDate()+i);const iso=isoLocalDate(d);const b=document.createElement('button');b.className='week-day'+(iso===selectedPlanDate?' active':'');b.innerHTML=d.toLocaleDateString('en-US',{weekday:'short'})+'<small>'+d.getDate()+'</small>';b.onclick=()=>{selectedPlanDate=iso;renderPlan()};box.appendChild(b)}
  const idx=calcIndex(selectedPlanDate),r=dayRecord(selectedPlanDate),load=dayLoad(selectedPlanDate),saved=db.plans[selectedPlanDate]||{};
  document.getElementById('planDateTitle').textContent=dateLabel(selectedPlanDate);
  document.getElementById('planIndexTag').textContent='Index '+idx.value;

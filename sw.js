@@ -1,4 +1,4 @@
-const CACHE='libra-lab-v17-calendar-exit-fix-cache';
+const CACHE='libra-lab-v19-dashboard-pages-cache';
 const CORE=['./','./index.html','./manifest.webmanifest'];
 
 self.addEventListener('install', event => {
