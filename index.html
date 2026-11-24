@@ -517,6 +517,27 @@ body.performance-active #exitPerformance{
  font-size:30px!important;font-weight:300!important;
 }
 
+
+/* v20 — focused Stress-Rest app: Home, Daily Input, Calendar */
+#dailyinput .topline{display:flex;align-items:center;justify-content:space-between;margin:8px 0 10px}
+#dailyinput h1{font-size:27px;letter-spacing:-.025em}
+#dailyinput .checkin-shortcuts{display:grid;grid-template-columns:1fr;gap:12px;margin-top:18px}
+#dailyinput .checkin-shortcuts .btn{min-height:94px;display:grid;grid-template-columns:42px 1fr;grid-template-rows:auto auto;align-items:center;text-align:left;padding:18px}
+#dailyinput .checkin-shortcuts .shortcut-icon{grid-row:span 2;font-size:25px}
+#dailyinput .checkin-shortcuts .btn small{grid-column:2}
+#dailyinput .overview{margin-top:16px}
+#dailyinput .overview-content:empty{display:none}
+#dailyinput .hint{line-height:1.55}
+.nav{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+.nav button{font-size:12px!important}
+
+
+/* v20 focused scope: old activity/planning screens are retired from the product UI */
+#add,#practice,#planning{display:none!important}
+#dailyinput .checkin-shortcuts{grid-template-columns:1fr!important}
+#dailyinput .checkin-shortcuts .btn{min-height:88px}
+#dailyinput .overview{margin-top:18px}
+
 </style>
 </head>
 <body>
@@ -528,13 +549,7 @@ body.performance-active #exitPerformance{
 </header>
 
 <section class="view active" id="dashboard">
-  <div class="dashboard-pages-nav" role="tablist" aria-label="Dashboard pages">
-    <button class="active" type="button" data-dashboard-page="0" role="tab" aria-selected="true">Overview</button>
-    <button type="button" data-dashboard-page="1" role="tab" aria-selected="false">Daily Input</button>
-  </div>
-  <div class="dashboard-pager" id="dashboardPager">
-    <div class="dashboard-page" data-page="0" role="tabpanel">
-  <div class="card index-card">
+<div class="card index-card">
     <div class="index-head"><span class="index-label">Stress-Rest Index</span></div>
     <div class="gauge-wrap"><svg viewBox="0 0 320 178" role="img" aria-label="Stress-Rest Index gauge"><defs><linearGradient id="indexGradient" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#bd666e"/><stop offset="48%" stop-color="#b9a36f"/><stop offset="100%" stop-color="#58ad91"/></linearGradient></defs><path class="gauge-track" d="M28 150 A132 132 0 0 1 292 150"/><path class="gauge-value" id="indexGauge" d="M28 150 A132 132 0 0 1 292 150"/></svg><strong class="gauge-score" id="indexValue">68</strong><div class="gauge-caption"><span>Stress</span><span>Rest</span></div></div>
     <div class="index-state" id="indexState">Balanced</div>
@@ -548,29 +563,26 @@ body.performance-active #exitPerformance{
     <div class="progress-chart-title">Daily Stress-Rest Index</div><div class="progress-chart" id="progressChart"><div class="progress-empty">Record check-ins and activities to build your history.</div></div>
     <p class="progress-footnote">Tap a day to open its history.</p>
   </section>
-    </div>
-    <div class="dashboard-page" data-page="1" role="tabpanel">
-  <div class="card overview open" id="overviewCard">
+</section>
+
+<section class="view" id="dailyinput">
+  <div class="topline"><h1>Daily Input</h1><span class="eyebrow">CHECK-IN</span></div>
+  <p class="hint">Record how you feel in the morning and evening. No practice log or planning is needed.</p>
+<div class="card overview open" id="overviewCard">
     <button class="overview-toggle" id="overviewToggle"><strong>Today’s Overview</strong><span id="overviewChevron">⌃</span></button>
     <div class="overview-content" id="overviewContent"></div>
   </div>
   <div class="checkin-shortcuts">
     <button class="btn" data-go="morning"><span class="shortcut-icon">☼</span><span>Morning Check-in</span><small id="morningStatus">Open</small></button>
     <button class="btn" data-go="evening"><span class="shortcut-icon">☾</span><span>Evening Check-in</span><small id="eveningStatus">Open</small></button>
-  </div>
-  <button class="btn primary add-activity" data-go="add"><span class="plus">＋</span>Add Activity</button>
-  <div class="card today-plan-card">
-    <div class="row"><h3>Today’s suggested direction</h3><button class="text-link" data-go="planning">Weekly plan ›</button></div>
-    <p id="dashboardPlan" class="hint">Your suggested direction will appear here as you record check-ins and activities.</p>
-  </div>
-    </div>
+  </div><p id="dashboardPlan" class="hint">Your suggested direction will appear here as you record check-ins and activities.</p>
   </div>
 </section>
 
 <section class="view" id="add">
   <div class="topline"><button class="back" data-go="dashboard">‹ Dashboard</button><span class="eyebrow">MUSIC & WORK</span></div>
   <h1>Add Activity</h1><p class="hint">Choose the activity you want to record.</p>
-  <button class="btn" data-go="practice"><span class="plus">◎</span>Practice <span style="float:right">›</span></button>
+  
   <button class="btn" data-event-type="Rehearsal"><span class="plus">♫</span>Rehearsal <span style="float:right">›</span></button>
   <button class="btn" data-event-type="Concert"><span class="plus">▣</span>Concert <span style="float:right">›</span></button>
 </section>
@@ -712,7 +724,7 @@ body.performance-active #exitPerformance{
         <div class="more-data">
           <div class="more-data-title">Local Data</div>
           <div class="metric"><span>Saved days</span><b id="savedDays">0</b></div>
-          <div class="metric"><span>Practice entries</span><b id="savedPractice">0</b></div>
+          <div class="metric"><span>Morning / evening check-ins</span><b id="savedPractice">0</b></div>
           <div class="metric"><span>Calendar events</span><b id="savedEvents">0</b></div>
           <div class="metric"><span>Connection</span><b id="offlineStatus">Online</b></div>
           <p class="hint">Your records are stored locally on this iPhone. Export a backup regularly.</p>
@@ -779,20 +791,17 @@ body.performance-active #exitPerformance{
 <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
   <div class="menu-panel">
     <div class="menu-head"><strong>LIBRA LAB</strong><button class="menu-close" id="closeMenu" aria-label="Close menu">×</button></div>
-    <div class="menu-group"><button type="button">Music &amp; Work <span>＋</span></button><div class="menu-items"><button data-go="add">Add Activity</button><button data-go="practice">Practice Log</button><button data-go="calendar">Calendar</button></div></div>
-    <div class="menu-group"><button type="button">Planning <span>＋</span></button><div class="menu-items"><button data-go="planning">Practice Planning</button><button data-go="performance">Performance Mode</button></div></div>
-    <div class="menu-group"><button type="button">Insights <span>＋</span></button><div class="menu-items"><button data-go="insights">Personal Insights</button><button data-go="reports">PDF Reports</button></div></div>
-    <div class="menu-group"><button type="button">Check-in <span>＋</span></button><div class="menu-items"><button data-go="morning">Morning Check-in</button><button data-go="evening">Evening Check-in</button></div></div>
-    <div class="menu-group"><button type="button">Settings <span>＋</span></button><div class="menu-items"><button data-go="settings">App Settings</button><button data-go="search">Global Search</button><button data-go="backup">Backup &amp; Restore</button><button data-go="diagnostics">System Diagnostics</button></div></div>
+    <div class="menu-group"><button type="button">Performance <span>＋</span></button><div class="menu-items"><button data-go="performance">Performance Mode</button></div></div>
+    <div class="menu-group"><button type="button">Check-ins <span>＋</span></button><div class="menu-items"><button data-go="dailyinput">Daily Input</button><button data-go="morning">Morning Check-in</button><button data-go="evening">Evening Check-in</button></div></div>
+    <div class="menu-group"><button type="button">Import &amp; Reports <span>＋</span></button><div class="menu-items"><button data-go="importcsv">Import CSV</button><button data-go="dienstplan">Import PDF</button><button data-go="reports">PDF Reports</button></div></div>
+    <div class="menu-group"><button type="button">System <span>＋</span></button><div class="menu-items"><button data-go="backup">Backup &amp; Restore</button><button data-go="diagnostics">System Diagnostics</button><button data-go="settings">App Settings</button></div></div>
   </div>
 </div>
 </main>
 <nav class="nav">
 <button data-nav="dashboard" class="active"><b>⌂</b>Home</button>
-<button data-nav="practice"><b>♫</b>Practice</button>
+<button data-nav="dailyinput"><b>◷</b>Daily Input</button>
 <button data-nav="calendar"><b>▦</b>Calendar</button>
-<button data-nav="performance"><b>◉</b>Perform</button>
-<button data-nav="settings"><b>•••</b>More</button>
 </nav>
 <div class="toast" id="toast"></div>
 <div class="overlay" id="confirmOverlay"><div class="sheet"><h2 id="confirmTitle">Confirm</h2><p class="hint" id="confirmText"></p><div class="screen-actions"><button class="btn" id="confirmCancel">Cancel</button><button class="btn primary" id="confirmOk">Confirm</button></div></div></div>
@@ -834,7 +843,7 @@ const viewHistory=[];
 function go(id,fromHistory=false){
  const current=document.querySelector('.view.active')?.id;
  if(!fromHistory&&current&&current!==id)viewHistory.push(current);
- document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));document.querySelectorAll('[data-nav]').forEach(b=>b.classList.toggle('active',b.dataset.nav===id||(id==='practice'&&b.dataset.nav==='practice')||(['morning','evening'].includes(id)&&b.dataset.nav==='settings')));document.body.classList.toggle('performance-active',id==='performance');window.scrollTo({top:0,behavior:'smooth'});if(id==='calendar')renderCalendar();if(id==='practice')renderPracticeToday();if(id==='insights')renderInsights();if(id==='settings')renderSettings();if(id==='dashboard')refresh();if(['morning','evening'].includes(id))setCheckinTab(id);if(id==='performance')startCueRotation();else stopCueRotation();}
+ document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));document.querySelectorAll('[data-nav]').forEach(b=>b.classList.toggle('active',b.dataset.nav===id||(['morning','evening'].includes(id)&&b.dataset.nav==='dailyinput')));document.body.classList.toggle('performance-active',id==='performance');window.scrollTo({top:0,behavior:'smooth'});if(id==='calendar')renderCalendar();if(id==='practice')renderPracticeToday();if(id==='insights')renderInsights();if(id==='settings')renderSettings();if(id==='dashboard')refresh();if(['morning','evening'].includes(id))setCheckinTab(id);if(id==='performance')startCueRotation();else stopCueRotation();}
 
 document.addEventListener('click',e=>{
  const back=e.target.closest('.back');
@@ -861,32 +870,49 @@ function coffeeAdvice(date=today()){if(hasConcert(date)||hasConcert(addDays(date
 function addDays(d,n){const x=new Date(d+'T12:00:00');x.setDate(x.getDate()+n);return isoLocalDate(x)}
 function dayRecord(date){return {morning:db.mornings[date]||null,evening:db.evenings[date]||null,practice:db.practices.filter(x=>x.date===date),events:dateEntries(date),coffee:db.coffee[date]||[]}}
 function calcIndex(date){
-  // Provisional transparent heuristic. Missing fields are neutral, not zero.
-  const r=dayRecord(date);let points=68,known=0,whyGood=[],whyBad=[];
-  if(r.morning){known++;const sleepMinutes=Number(r.morning.sleepDurationMinutes)||({'Less than 5 hours':240,'5–6 hours':330,'6–7 hours':390,'7–8 hours':450,'8–9 hours':510,'More than 9 hours':570}[r.morning.sleepDuration]||0);const sleepEffect=sleepMinutes?(sleepMinutes<300?-16:sleepMinutes<360?-10:sleepMinutes<420?-5:sleepMinutes<510?2:sleepMinutes<=570?5:3):0;points+=sleepEffect;if(r.morning.sleepQuality>=4){points+=4;whyGood.push('Good sleep quality')}else if(r.morning.sleepQuality<=2){points-=6;whyBad.push('Low sleep quality')}
-    const feelMap={Low:-10,Okay:-2,Good:4,'Very good':7};points+=feelMap[r.morning.feeling]||0;if(r.morning.embouchure>=4){points-=7;whyBad.push('Morning embouchure fatigue')}else if(r.morning.embouchure<=2){points+=4;whyGood.push('Fresh embouchure')}
+  // Check-in-only provisional model. Practice logs and calendar events do not affect this index.
+  const r=dayRecord(date);let points=50,known=0,good=[],bad=[];
+  if(r.morning){
+    if(r.morning.sleepDurationMinutes){
+      known++;
+      const hours=r.morning.sleepDurationMinutes/60;
+      const effect=hours<5?-16:hours<6?-11:hours<7?-5:hours<8?4:hours<=9?7:4;
+      points+=effect;
+      if(hours<6)bad.push('Short sleep duration');else if(hours>=7)good.push('Adequate sleep duration');
+    }
+    if(Number.isFinite(Number(r.morning.sleepQuality))){
+      known++;
+      const q=Number(r.morning.sleepQuality);
+      points+=(q-3)*3;
+      if(q<=2)bad.push('Low sleep quality');else if(q>=4)good.push('Good sleep quality');
+    }
+    const morningFeel={'Low':1,'Below average':2,'Okay':3,'Good':4,'Very good':5}[r.morning.feeling];
+    if(morningFeel){known++;points+=(morningFeel-3)*4;if(morningFeel<=2)bad.push('Low morning wellbeing');if(morningFeel>=4)good.push('Positive morning wellbeing')}
+    if(Number.isFinite(Number(r.morning.embouchure))){
+      known++;const e=Number(r.morning.embouchure);
+      points+=(3-e)*3;
+      if(e>=4)bad.push('Morning embouchure fatigue');else if(e<=2)good.push('Fresh embouchure');
+    }
   }
-  const totalPractice=r.practice.reduce((a,x)=>a+x.duration,0),work=r.events.reduce((a,x)=>a+x.duration,0);
-  const intensityScore=x=>x==='High'?1.35:x==='Light'?.65:1;
-  let load=0;for(const p of r.practice){const cat=p.category==='Free Playing'?.45:p.category==='Warm-up'?.55:p.category==='Ensemble / Social Playing'?1.05:p.category==='Solo Repertoire'||p.category==='Orchestral Excerpts'?1.25:0.85;load+=p.duration/60*cat*intensityScore(p.intensity)}
-  for(const e of r.events){let k=/concert/i.test(e.type)?1.35:/teaching/i.test(e.type)?0.75:1.15;load+=e.duration/60*k*intensityScore(e.intensity)}
-  points-=Math.min(18,load*2.1);if(load>3.2)whyBad.push('High musical workload');else if(load>0&&load<1.5)whyGood.push('Moderate activity load');
-  const fatigueVals=[...r.practice.map(x=>x.embFatigue),...r.events.map(x=>x.embFatigue)].filter(Number.isFinite),mentalVals=[...r.practice.map(x=>x.mentalFatigue),...r.events.map(x=>x.mentalFatigue)].filter(Number.isFinite);
-  if(fatigueVals.length){const avg=fatigueVals.reduce((a,b)=>a+b,0)/fatigueVals.length;points+=(3-avg)*3.2;if(avg>=4)whyBad.push('Elevated embouchure fatigue');if(avg<=2)whyGood.push('Low embouchure fatigue')}
-  if(mentalVals.length){const avg=mentalVals.reduce((a,b)=>a+b,0)/mentalVals.length;points+=(3-avg)*2.4;if(avg>=4)whyBad.push('High mental fatigue')}
-  if(r.evening){known++;const eveningScore=Number(r.evening.feelingScore)||({'Low':1,'Below average':2,'Okay':3,'Good':4,'Very good':5}[r.evening.feeling]||3);if(eveningScore<=2){points-=(3-eveningScore)*3;whyBad.push('Low evening condition')}else if(eveningScore>=4){points+=(eveningScore-3)*1.5;whyGood.push('Positive evening condition')}if(r.evening.nap==='Yes'&&Number(r.evening.napDuration)>=30)whyGood.push('Daytime nap recorded (context only)')}
-  // Delayed load from previous 2 days, decaying.
-  for(let back=1;back<=2;back++){const prev=dayRecord(addDays(date,-back));const prevLoad=prev.practice.reduce((a,x)=>a+x.duration/60*(x.intensity==='High'?1.35:x.intensity==='Light'?.65:1),0)+prev.events.reduce((a,x)=>a+x.duration/60*(x.intensity==='High'?1.35:x.intensity==='Light'?.65:1),0);points-=Math.min(5,prevLoad*(back===1?1.6:.8))}
-  if(r.evening?.travel==='Yes')points-=2;
+  if(r.evening){
+    const eveningScore=Number(r.evening.feelingScore)||({'Low':1,'Below average':2,'Okay':3,'Good':4,'Very good':5}[r.evening.feeling]||0);
+    if(eveningScore){known++;points+=(eveningScore-3)*5;if(eveningScore<=2)bad.push('Low evening wellbeing');if(eveningScore>=4)good.push('Positive evening wellbeing')}
+  }
+  // A small, decaying carry-over from yesterday's evening condition captures recovery across days.
+  const previous=dayRecord(addDays(date,-1));
+  if(previous.evening){
+    const prev=Number(previous.evening.feelingScore)||({'Low':1,'Below average':2,'Okay':3,'Good':4,'Very good':5}[previous.evening.feeling]||0);
+    if(prev){points+=(prev-3)*1.5;known++;}
+  }
   const value=Math.max(0,Math.min(100,Math.round(points)));
-  let advice=value<35?'Prioritise recovery. Keep playing to a minimum and protect your sleep.':value<55?'Reduce musical load today. Focus on gentle sound work and recovery.':value<75?'Keep a steady pace today and give yourself a proper recovery window.':'You appear well placed for focused work. Keep breaks and sound quality in focus.';
-  return {value,known,good:whyGood,bad:whyBad,advice};
+  const advice=value<35?'Prioritise recovery. Protect your sleep and reduce unnecessary demands.':value<50?'Give yourself more recovery space. Keep the day manageable.':value<70?'Keep a steady pace and pay attention to how you feel later today.':'Your check-ins suggest a good level of wellbeing. Maintain a balanced pace.';
+  return {value,known,good,bad,advice};
 }
 function latestIndex(date=today()){const d=calcIndex(date);return d}
 
 let progressDays=7;
 function progressRecordedDates(){
- return [...new Set([...Object.keys(db.mornings),...Object.keys(db.evenings),...db.practices.map(x=>x.date),...db.events.map(x=>x.date),(db.stressRestHistory||[]).map(x=>x.date)])]
+ return [...new Set([...Object.keys(db.mornings),...Object.keys(db.evenings),...(db.stressRestHistory||[]).map(x=>x.date)])]
   .filter(d=>/^\d{4}-\d{2}-\d{2}$/.test(d)).sort();
 }
 function renderProgress(){
@@ -914,13 +940,27 @@ document.getElementById('progressChart').addEventListener('click',e=>{
 });
 
 function refresh(){
-  const d=latestIndex();document.getElementById('indexValue').textContent=d.value;const g=document.getElementById('indexGauge');if(g)g.style.strokeDashoffset=414-(414*d.value/100);document.getElementById('adviceText').textContent=d.advice;
-  
-  const r=dayRecord(today()),tot=dayLoad(today());document.getElementById('todayLabel').textContent=dateLabel(today());document.getElementById('todayPractice').textContent=tot.practice+' min';document.getElementById('todayWork').textContent=tot.work+' min';document.getElementById('todayCheckin').textContent=(r.morning?'Morning ':'')+(r.evening?'Evening':'')||'Not completed';
-  const overview=document.getElementById('overviewContent');const rows=[['Sleep',r.morning?.sleepDuration||'Not completed'],['Morning Condition',r.morning?.feeling||'Not completed'],['Embouchure',r.morning?`${r.morning.embouchure}/5`:'Not completed'],['Practice',tot.practice?tot.practice+' min':'No entries'],['Rehearsals & Concerts',tot.work?tot.work+' min':'No entries'],['Evening Check-in',r.evening?'Completed':'Not completed']];
+ const d=latestIndex();
+ const index=document.getElementById('indexValue');if(index)index.textContent=d.known?d.value:'—';
+ const g=document.getElementById('indexGauge');if(g)g.style.strokeDashoffset=414-(414*d.value/100);
+ const advice=document.getElementById('adviceText');if(advice)advice.textContent=d.known?d.advice:'Complete a Morning or Evening Check-in to see your personal Stress-Rest Index.';
+ const r=dayRecord(today());
+ const overview=document.getElementById('overviewContent');
+ if(overview){
+  const rows=[
+   ['Sleep',r.morning?.sleepDuration||'Not completed'],
+   ['Morning Feeling',r.morning?.feeling||'Not completed'],
+   ['Sleep Quality',r.morning?`${r.morning.sleepQuality??'—'}/5`:'Not completed'],
+   ['Embouchure',r.morning?`${r.morning.embouchure??'—'}/5`:'Not completed'],
+   ['Evening Feeling',r.evening?.feeling||'Not completed'],
+   ['Nap',r.evening?.nap==='Yes'?(r.evening.napDuration||'Recorded'):'Not recorded']
+  ];
   overview.innerHTML=rows.map(([a,b])=>`<div class="metric"><span>${a}</span><b>${b}</b></div>`).join('');
-  renderProgress();
-  renderSettings();
+ }
+ const morningStatus=document.getElementById('morningStatus');if(morningStatus)morningStatus.textContent=r.morning?'Completed':'Open';
+ const eveningStatus=document.getElementById('eveningStatus');if(eveningStatus)eveningStatus.textContent=r.evening?'Completed':'Open';
+ renderProgress();
+ renderSettings();
 }
 document.getElementById('overviewToggle').addEventListener('click',()=>{const el=document.getElementById('overviewCard');el.classList.toggle('open');document.getElementById('overviewChevron').textContent=el.classList.contains('open')?'⌃':'⌄'});
 document.getElementById('savePractice').addEventListener('click',()=>{const p={id:crypto.randomUUID(),date:today(),category:document.getElementById('practiceCategory').value,duration:getDuration(),intensity:getChoice('practiceIntensity')||'Moderate',loadType:getChoice('practiceLoad')||'Both',embFatigue:getScale('embFatigue'),mentalFatigue:getScale('mentalFatigue'),notes:document.getElementById('practiceNotes').value,createdAt:new Date().toISOString()};db.practices.push(p);saveDB();document.getElementById('practiceNotes').value='';document.getElementById('practiceSaveFeedback').innerHTML=`<div class="practice-saved"><strong>Session saved</strong><span>${p.category} · ${p.duration} min · Embouchure ${p.embFatigue}/5 · Mental ${p.mentalFatigue}/5</span></div>`;renderPracticeToday();toast('Practice session saved.');});
@@ -939,10 +979,11 @@ document.addEventListener('click',e=>{if(e.target.closest('[data-choice="nap"]')
 document.getElementById('saveEvening').addEventListener('click',()=>{const feeling=eveningLabels[Number(document.getElementById('eveningFeelingSlider').value)];db.evenings[today()]={travel:getChoice('travel')||'No',nap:getChoice('nap')||'No',napDuration:getChoice('nap')==='Yes'?Number(document.getElementById('napDuration').value):0,feeling,feelingScore:Number(document.getElementById('eveningFeelingSlider').value),notes:document.getElementById('eveningNotes').value,updatedAt:new Date().toISOString()};saveDB();toast('Evening check-in saved.');go('dashboard')});
 document.getElementById('savePlan').addEventListener('click',()=>{db.plans[today()]={decision:document.getElementById('planDecision').value,actual:document.getElementById('actualActivity').value,reason:document.getElementById('planReason').value,feedback:getChoice('planFeedback'),updatedAt:new Date().toISOString()};saveDB();toast('Practice plan saved.')});
 function calendarCellItems(date){
- const events=dateEntries(date).map(e=>({label:e.type||'Event',kind:/concert/i.test(e.type)?'concert':'event'}));
- const practices=db.practices.filter(p=>p.date===date).map(p=>({label:p.category||'Practice',kind:'practice'}));
- const legacy=(db.stressRestHistory||[]).filter(x=>x.date===date).map(x=>({label:`Stress-Rest ${x.index}`,kind:'checkin'}));
- return [...legacy,...events,...practices].slice(0,2);
+ const items=[];
+ if((db.stressRestHistory||[]).some(x=>x.date===date))items.push({label:'Imported history',kind:'checkin'});
+ if(db.mornings[date])items.push({label:'Morning check-in',kind:'checkin'});
+ if(db.evenings[date])items.push({label:'Evening check-in',kind:'checkin'});
+ return items;
 }
 function renderCalendar(){
  const y=calendarMonth.getFullYear(),m=calendarMonth.getMonth();
@@ -955,7 +996,8 @@ function renderCalendar(){
   const date=isoLocalDate(new Date(y,m,n));
   const items=calendarCellItems(date);
   const legacyScore=(db.stressRestHistory||[]).find(x=>x.date===date)?.index;
-  const hasData=legacyScore!==undefined||dateEntries(date).length>0||db.practices.some(p=>p.date===date)||!!db.mornings[date]||!!db.evenings[date];
+  const hasCheckin=!!db.mornings[date]||!!db.evenings[date];
+  const hasData=legacyScore!==undefined||hasCheckin;
   const dayScore=legacyScore!==undefined?legacyScore:calcIndex(date).value;
   const tone=!hasData?'calendar-no-data':dayScore<45?'calendar-stress':dayScore<65?'calendar-moderate':'calendar-recovery';
   const labels=items.map(item=>`<span class="day-event-chip ${item.kind}">${item.label}</span>`).join('');
@@ -972,28 +1014,36 @@ function renderCalendarEvents(){
  const r=dayRecord(selectedDate);
  const imported=(db.stressRestHistory||[]).find(x=>x.date===selectedDate);
  const rows=[
-  ...(imported?[{title:'Imported Stress-Rest history',meta:`Original index ${imported.index}/100 · Sleep ${imported.sleep} h`,detail:`Work playing ${imported.work} h · Personal practice ${imported.practice} h · Musical fatigue ${imported.fatigue??'—'}/5${imported.note?' · '+imported.note:''}`,kind:'checkin'}]:[]),
-  ...r.events.map(e=>({title:e.type||'Event',meta:`${e.start||''}${e.end?' – '+e.end:''}`,detail:e.notes||e.location||'',kind:/concert/i.test(e.type)?'concert':'event'})),
-  ...r.practice.map(p=>({title:p.category||'Practice',meta:`${p.duration} min · ${p.intensity||'Moderate'}`,detail:p.notes||`Embouchure ${p.embFatigue??'—'}/5 · Mental ${p.mentalFatigue??'—'}/5`,kind:'practice'}))
+  ...(imported?[{title:'Imported Stress-Rest history',meta:`Original index ${imported.index}/100 · Sleep ${imported.sleep} h`,detail:`Subjective feeling ${imported.subjective}/100 · Musical fatigue ${imported.fatigue??'—'}/5${imported.note?' · '+imported.note:''}`,kind:'checkin'}]:[]),
+  ...(r.morning?[{title:'Morning Check-in',meta:`${r.morning.feeling||'Completed'} · Sleep ${r.morning.sleepDuration||'—'}`,detail:`Sleep quality ${r.morning.sleepQuality??'—'}/5 · Embouchure ${r.morning.embouchure??'—'}/5`,kind:'checkin'}]:[]),
+  ...(r.evening?[{title:'Evening Check-in',meta:r.evening.feeling||'Completed',detail:`${r.evening.nap==='Yes'?'Nap: '+(r.evening.napDuration||'recorded'):'No nap recorded'}${r.evening.notes?' · '+r.evening.notes:''}`,kind:'checkin'}]:[])
  ];
- if(r.morning)rows.unshift({title:'Morning Check-in',meta:`${r.morning.feeling||''} · Sleep ${r.morning.sleepDuration||'—'}`,detail:`Embouchure condition ${r.morning.embouchure??'—'}/5`,kind:'checkin'});
- if(r.evening)rows.push({title:'Evening Check-in',meta:r.evening.feeling||'Completed',detail:r.evening.notes||'',kind:'checkin'});
  if(!rows.length){
   box.className='hint empty';
-  box.innerHTML='No activity recorded for this day.<div class="calendar-empty-actions"><button class="btn" id="calendarAddDay">＋ Add activity</button></div>';
+  box.innerHTML='No check-ins recorded for this day.<div class="calendar-empty-actions"><button class="btn" id="calendarAddDay">＋ Daily Input</button></div>';
  }else{
   box.className='calendar-agenda';
-  box.innerHTML=rows.map(row=>`<div class="calendar-agenda-row ${row.kind}"><div class="agenda-marker"></div><div class="agenda-copy"><strong>${row.title}</strong><span>${row.meta}</span>${row.detail?`<small>${row.detail}</small>`:''}</div></div>`).join('');
-  box.innerHTML+=`<button class="btn ghost calendar-full-day" id="openFullDay">View Full Day</button>`;
+  box.innerHTML=rows.map(row=>`<div class="calendar-agenda-row ${row.kind}"><div class="agenda-marker"></div><div class="agenda-copy"><strong>${row.title}</strong><span>${row.meta}</span><small>${row.detail}</small></div></div>`).join('');
  }
- const add=document.getElementById('calendarAddDay');
- if(add)add.onclick=()=>{document.getElementById('eventDate').value=selectedDate;go('event')};
- const full=document.getElementById('openFullDay');
- if(full)full.onclick=()=>renderFullDay(selectedDate);
+ const add=document.getElementById('calendarAddDay');if(add)add.onclick=()=>go('dailyinput');
 }
-document.getElementById('addCalendarEventTop').onclick=()=>{document.getElementById('eventDate').value=selectedDate;go('event')};
-function renderFullDay(date){go('fullday');document.getElementById('fullDayTitle').textContent='Full Day · '+dateLabel(date);const r=dayRecord(date),tot=dayLoad(date),legacy=(db.stressRestHistory||[]).find(x=>x.date===date);const sections=[...(legacy?[['Imported Stress-Rest Index',`${legacy.index}/100`],['Subjective Check-in',`${legacy.subjective}/100`],['Sleep',`${legacy.sleep} h`],['Playing at Work',`${legacy.work} h`],['Personal Practice',`${legacy.practice} h`],['Musical Fatigue',legacy.fatigue===null?'Not recorded':`${legacy.fatigue}/5`],['Original Note',legacy.note||'No note']]:[]),['Sleep',r.morning?.sleepDuration||'Not completed'],['Morning Check-in',r.morning?`${r.morning.feeling} · Embouchure ${r.morning.embouchure}/5`:'Not completed'],['Practice',r.practice.length?r.practice.map(x=>`${x.category} · ${x.duration} min`).join('<br>'):'No entries'],['Rehearsals & Concerts',r.events.length?r.events.map(x=>`${x.type} · ${x.start}–${x.end}`).join('<br>'):'No entries'],['Evening Check-in',r.evening?`${r.evening.feeling} · Travel ${r.evening.travel}`:'Not completed'],['Lifestyle',`${r.coffee.length} coffee(s)`],['Stress-Rest Index',String(calcIndex(date).value)]];document.getElementById('fullDayContent').innerHTML=sections.map(([a,b])=>`<div class="card"><div class="row"><h3>${a}</h3><span class="small muted">${b}</span></div></div>`).join('')+`<div class="card"><div class="metric"><span>Total Practice Time</span><b>${tot.practice} min</b></div><div class="metric"><span>Total Rehearsal & Concert Time</span><b>${tot.work} min</b></div><div class="metric"><span>Daily Stress-Rest Index</span><b>${calcIndex(date).value}</b></div></div>`}
-function renderInsights(){const dates=[...new Set([...Object.keys(db.mornings),...Object.keys(db.evenings),...db.practices.map(x=>x.date),...db.events.map(x=>x.date),(db.stressRestHistory||[]).map(x=>x.date)])].sort().slice(-7);const legacyMap=new Map((db.stressRestHistory||[]).map(x=>[x.date,x.index]));const vals=dates.map(d=>legacyMap.has(d)?legacyMap.get(d):calcIndex(d).value);const avg=vals.length?Math.round(vals.reduce((a,b)=>a+b,0)/vals.length):null;document.getElementById('averageIndex').textContent=avg??'—';document.getElementById('indexChart').innerHTML=vals.length?vals.map(v=>`<i style="height:${Math.max(8,v)}%"></i>`).join(''):'<span class="hint">No recorded data yet.</span>';document.getElementById('insightSummary').textContent=vals.length?`Based on ${vals.length} recorded day(s). This is an experimental estimate, not a clinical measurement.`:'Insights will become more meaningful as you record data.';const p=db.practices;document.getElementById('insEmb').textContent=p.length?`Avg ${ (p.reduce((a,x)=>a+x.embFatigue,0)/p.length).toFixed(1)}/5`:'Not enough data';document.getElementById('insMental').textContent=p.length?`Avg ${ (p.reduce((a,x)=>a+x.mentalFatigue,0)/p.length).toFixed(1)}/5`:'Not enough data';document.getElementById('insSleep').textContent=Object.keys(db.mornings).length+' check-in(s)';document.getElementById('insLoad').textContent=(db.practices.length+db.events.length)+' logged activities'}
+function renderFullDay(date){
+ go('fullday');
+ document.getElementById('fullDayTitle').textContent='Daily Check-in · '+dateLabel(date);
+ const r=dayRecord(date),legacy=(db.stressRestHistory||[]).find(x=>x.date===date);
+ const rows=[
+ ...(legacy?[['Imported Stress-Rest Index',`${legacy.index}/100`],['Subjective Check-in',`${legacy.subjective}/100`],['Sleep',`${legacy.sleep} h`],['Playing at Work',`${legacy.work} h`],['Personal Practice',`${legacy.practice} h`],['Musical Fatigue',legacy.fatigue===null?'Not recorded':`${legacy.fatigue}/5`],['Original Note',legacy.note||'No note']]:[]),
+ ['Sleep',r.morning?.sleepDuration||'Not recorded'],
+ ['Morning Feeling',r.morning?.feeling||'Not completed'],
+ ['Morning Embouchure',r.morning?`${r.morning.embouchure}/5`:'Not completed'],
+ ['Evening Feeling',r.evening?.feeling||'Not completed'],
+ ['Nap',r.evening?.nap==='Yes'?(r.evening.napDuration||'Recorded'):'Not recorded'],
+ ['Evening Notes',r.evening?.notes||'No notes'],
+ ['Stress-Rest Index',String(legacy?.index??calcIndex(date).value)]
+ ];
+ document.getElementById('fullDayContent').innerHTML=rows.map(([label,value])=>`<div class="card"><div class="row"><h3>${label}</h3><span class="small muted">${value}</span></div></div>`).join('');
+}
+function renderInsights(){const dates=[...new Set([...Object.keys(db.mornings),...Object.keys(db.evenings),...(db.stressRestHistory||[]).map(x=>x.date)])].sort().slice(-7);const legacyMap=new Map((db.stressRestHistory||[]).map(x=>[x.date,x.index]));const vals=dates.map(d=>legacyMap.has(d)?legacyMap.get(d):calcIndex(d).value);const avg=vals.length?Math.round(vals.reduce((a,b)=>a+b,0)/vals.length):null;document.getElementById('averageIndex').textContent=avg??'—';document.getElementById('indexChart').innerHTML=vals.length?vals.map(v=>`<i style="height:${Math.max(8,v)}%"></i>`).join(''):'<span class="hint">No recorded data yet.</span>';document.getElementById('insightSummary').textContent=vals.length?`Based on ${vals.length} recorded day(s). This is an experimental estimate, not a clinical measurement.`:'Insights will become more meaningful as you record data.';const p=db.practices;document.getElementById('insEmb').textContent=p.length?`Avg ${ (p.reduce((a,x)=>a+x.embFatigue,0)/p.length).toFixed(1)}/5`:'Not enough data';document.getElementById('insMental').textContent=p.length?`Avg ${ (p.reduce((a,x)=>a+x.mentalFatigue,0)/p.length).toFixed(1)}/5`:'Not enough data';document.getElementById('insSleep').textContent=Object.keys(db.mornings).length+' check-in(s)';document.getElementById('insLoad').textContent=(db.practices.length+db.events.length)+' logged activities'}
 document.getElementById('searchInput').addEventListener('input',e=>{const q=e.target.value.toLowerCase();const entries=[...db.practices.map(x=>({...x,kind:'Practice',text:`${x.category} ${x.notes||''}`})),...db.events.map(x=>({...x,kind:x.type,text:`${x.type} ${x.notes||''}`}))].filter(x=>`${x.kind} ${x.text} ${x.date}`.toLowerCase().includes(q));document.getElementById('searchResults').innerHTML=q?(entries.length?entries.map(x=>`<div class="metric"><span>${x.kind} · ${dateLabel(x.date)} · ${x.text}</span><b>${x.duration} min</b></div>`).join(''):'No results found. Try a different search.'):'Search your saved entries.'});
 document.getElementById('manualImportEvent').onclick=()=>{document.getElementById('eventDate').value=selectedDate;go('event')};
 document.getElementById('exportBackup').onclick=()=>download('LIBRA-Lab_Full-Backup_'+today()+'.json',JSON.stringify(db,null,2),'application/json');

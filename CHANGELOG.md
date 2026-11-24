@@ -1,6 +1,11 @@
-# v19
-- Dashboard split into two swipeable pages: Overview (Stress-Rest Index and progress) and Daily Input (Today’s Overview, Morning Check-in, Evening Check-in, Add Activity and suggested direction).
-- Added clear page tabs; users can switch by tapping or horizontal swiping.
-- Performance Mode heading changed to a modern minimalist sans-serif, centered.
-- Performance Mode exit circle reduced to 60 px and moved lower; white × retained.
-- Service-worker cache bumped.
+# v20 — focused Stress-Rest tracker
+- Refocused the product on daily wellbeing and Stress-Rest tracking.
+- Bottom navigation now contains only Home, Daily Input and Calendar. Removed Practice and More from the bottom bar.
+- Home retains Stress-Rest Index, Advice and 7/30-day progress.
+- Daily Input contains only Today's Overview and Morning / Evening Check-ins.
+- Removed Practice Log, Add Activity, rehearsal/concert entry, Today's suggested direction and Weekly Plan from the visible workflow.
+- Practice/workload entries are no longer used to calculate the new LIBRA Lab index. The provisional index now uses morning sleep duration, sleep quality, morning wellbeing, embouchure condition, evening wellbeing and a small previous-evening carry-over.
+- Imported original Stress-Rest scores remain stored and displayed as historical source values; they are not recalculated.
+- Calendar and Full Day focus on check-ins and imported Stress-Rest history.
+- Top-right menu retains Performance Mode, check-ins, import, reports, backup, settings and diagnostics.
+- Existing local database key and all stored records are preserved.

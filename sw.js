@@ -1,4 +1,4 @@
-const CACHE='libra-lab-v19-dashboard-pages-cache';
+const CACHE='libra-lab-v20-focused-stress-rest-cache';
 const CORE=['./','./index.html','./manifest.webmanifest'];
 
 self.addEventListener('install', event => {
